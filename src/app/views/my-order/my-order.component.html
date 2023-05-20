@@ -1,0 +1,74 @@
+<div style="margin-top:-40px;">
+    <div class="card mt-4">
+        <div class="card-body p-0 table-responsive">
+            <h4 class="p-3 mb-0">My Orders</h4>
+            <table class="table mb-0" style="margin-left:38px">
+                <thead>
+                    <tr>
+                        <th width="20%" scope="col">Date</th>
+                        <th  width="10%"  scope="col">Order ID</th>
+
+                        <th  width="10%"  scope="col">Total</th>
+                        <th  width="20%" scope="col">Status</th>
+                        <th  width="20%"  scope="col">Payment</th>
+                        <th   width="20%" scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let main of allProduct; let i = index">
+                       <td  width="20%" >{{main.dateOn}}</td>
+                        <td width="10%" >{{main.billNo}}</td>
+                        <td  width="10%" ><strong>£{{main.totalPaid | currency:' '}}</strong></td>
+                        <td *ngIf="main.status=='pending'" width="20%" ><span class="badge badge-warning">{{main.status}}</span></td>
+                        <td *ngIf="main.status=='processing'" width="20%" ><span class="badge badge-warning">{{main.status}}</span></td>
+                        <td *ngIf="main.status=='delivered'" width="20%" ><span class="badge badge-success">{{main.status}}</span></td>
+                        <td *ngIf="main.status=='canceled'" width="20%" ><span class="badge badge-danger">{{main.status}}</span></td>
+
+                        <td *ngIf="main.paymentStatus=='paid'" width="20%" ><span class="badge badge-success">{{main.paymentStatus}}</span></td>
+                        <td *ngIf="main.paymentStatus=='cod'" width="20%" ><span class="badge badge-warning">{{main.paymentStatus}}</span></td>
+
+                        <td width="20px">
+                            <a>  <img src="./assets/images/icons/search.png"
+                                style="margin-right: 10px; margin-top: 10px;" width="24px" (click)="onView(info,'1000',main.billId)" height="24px"></a>
+                        </td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<ng-template #info let-modal>
+    <div class="modal-header">
+        <h5>View Products</h5>
+    </div>
+    <div class="modal-body" style="padding: 20px;">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th width="10%">Image</th>
+                    <th width="30%">Product Name</th>
+                    <th width="20%">Quantity</th>
+                    <th width="20%">Price</th>
+                    <th width="20%">Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let product of allOrders.saleDetails">
+                    <td width="10%"> <img src="{{serverImgPath}}{{product.product.imgPath}}" style="height: 50px; width:50px;" ></td>
+                    <td width="30%"> {{ product.product.nameOf }} </td>
+                    <td width="20%"> {{ product.SQty }} </td>
+                    <td width="20%">{{ product.product.price }}</td>
+                    <td width="20%">{{ product.totalAmount }}</td>
+                </tr>
+            </tbody>
+        </table>
+          
+    </div>
+   
+    <div class="modal-footer">
+        <!-- <button type="button" [disabled]="!_is_print" (click)="printInvoice()" class="btn btn-primary">Print Invoice</button> -->
+        <button type="button" class="btn btn-simple" data-dismiss="modal"
+            (click)="modal.dismiss('Close click')">CLOSE</button>
+    </div>
+</ng-template>

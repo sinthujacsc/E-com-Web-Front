@@ -1,0 +1,348 @@
+<main class="main" style="background-color: white;">
+    <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
+        <div class="container">
+            <h1 class="page-title">List<span>Shop</span></h1>
+        </div><!-- End .container -->
+    </div><!-- End .page-header -->
+    <nav aria-label="breadcrumb" class="breadcrumb-nav mb-2">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="#">Shop</a></li>
+                <li class="breadcrumb-item active" aria-current="page">List</li>
+            </ol>
+        </div><!-- End .container -->
+    </nav><!-- End .breadcrumb-nav -->
+
+    <div class="page-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9">
+                    <div class="toolbox">
+                        <div class="toolbox-left">
+                            <div class="toolbox-info">
+                                <div class="text-center">Showing {{start==null?1:start }} - {{last==null?10:last}} of
+                                    100 results</div>
+
+                            </div><!-- End .toolbox-info -->
+                        </div><!-- End .toolbox-left -->
+
+                        <div class="toolbox-right">
+                            <div class="toolbox-sort">
+                                <label for="sortby">Sort By :</label>
+                                <div class="select-custom">
+                                    <select name="sortby" id="sortby" class="form-control" style="width:300px;    height: 40px;
+                                    border-color: burlywood;
+                                    color: lightslategray;" [ngModel]="sortText" (ngModelChange)="onChange($event)"
+                                        title="Sort By">
+                                        <option value="asc" selected="selected">Price: Low to High </option>
+                                        <option value="dsc">Price: High to Low</option>
+                                    </select>
+                                </div>
+                            </div><!-- End .toolbox-sort -->
+                            <div class="toolbox-layout">
+                                <a href="category-list.html" class="btn-layout active">
+                                    <svg width="16" height="10">
+                                        <rect x="0" y="0" width="4" height="4" />
+                                        <rect x="6" y="0" width="10" height="4" />
+                                        <rect x="0" y="6" width="4" height="4" />
+                                        <rect x="6" y="6" width="10" height="4" />
+                                    </svg>
+                                </a>
+
+                                <a href="category-2cols.html" class="btn-layout">
+                                    <svg width="10" height="10">
+                                        <rect x="0" y="0" width="4" height="4" />
+                                        <rect x="6" y="0" width="4" height="4" />
+                                        <rect x="0" y="6" width="4" height="4" />
+                                        <rect x="6" y="6" width="4" height="4" />
+                                    </svg>
+                                </a>
+
+                                <a href="category.html" class="btn-layout">
+                                    <svg width="16" height="10">
+                                        <rect x="0" y="0" width="4" height="4" />
+                                        <rect x="6" y="0" width="4" height="4" />
+                                        <rect x="12" y="0" width="4" height="4" />
+                                        <rect x="0" y="6" width="4" height="4" />
+                                        <rect x="6" y="6" width="4" height="4" />
+                                        <rect x="12" y="6" width="4" height="4" />
+                                    </svg>
+                                </a>
+
+                                <a href="category-4cols.html" class="btn-layout">
+                                    <svg width="22" height="10">
+                                        <rect x="0" y="0" width="4" height="4" />
+                                        <rect x="6" y="0" width="4" height="4" />
+                                        <rect x="12" y="0" width="4" height="4" />
+                                        <rect x="18" y="0" width="4" height="4" />
+                                        <rect x="0" y="6" width="4" height="4" />
+                                        <rect x="6" y="6" width="4" height="4" />
+                                        <rect x="12" y="6" width="4" height="4" />
+                                        <rect x="18" y="6" width="4" height="4" />
+                                    </svg>
+                                </a>
+                            </div><!-- End .toolbox-layout -->
+                        </div><!-- End .toolbox-right -->
+                    </div><!-- End .toolbox -->
+
+                    <div class="products mb-3">
+                        <div class="product product-list" *ngFor="let pd of allproductByCategory | paginate: { itemsPerPage: 10, currentPage: p };
+                        let ndx = index">
+                            <div class="row">
+                                <div class="col-md-4 col-lg-3">
+                                    <figure class="product-media" style="background-color: white;">
+                                        <span class="product-label label-new" *ngIf="pd.isNew=='Y'">New</span>
+                                        <a routerLink="/product-detail/{{pd.code}}">
+                                            <img src="{{serverImgPath}}{{pd.imgPath}}" class="product-img" id="{{ndx}}"
+                                                alt="Product image" class="product-image">
+                                        </a>
+                                    </figure><!-- End .product-media -->
+                                </div><!-- End .col-sm-6 col-lg-3 -->
+
+                                <div class="col-md-4 col-lg-3 order-lg-last">
+                                    <div class="product-list-action">
+                                        <div class="product-price">
+                                            £{{pd.price | currency:' '}}
+                                        </div><!-- End .product-price -->
+                                        <div class="ratings-container">
+                                            <div class="ratings">
+                                                <div class="ratings-val" style="width: 20%;"></div>
+                                                <!-- End .ratings-val -->
+                                            </div><!-- End .ratings -->
+                                            <span class="ratings-text">( 2 Reviews )</span>
+                                        </div><!-- End .rating-container -->
+
+                                        <div class="product-action">
+                                            <a class="btn-product popup-btn btn-quickview" title="Quick view"
+                                                (click)="onView(info,'1000',pd.custId,pd.imgPath)"><span
+                                                    style="cursor: pointer;">quick
+                                                    view</span></a>
+                                            <a href="#" class="btn-product btn-compare"
+                                                title="Compare"><span>compare</span></a>
+                                        </div><!-- End .product-action -->
+
+                                        <ng-template #info let-modal>
+                                            <div style="height: 100px;">
+                                                <div class="popup-card" style="padding-top: 0px;">
+
+                                                    <div class="popup-img">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <img [src]="quickViewImageSrc" alt=""
+                                                                            width="800px !important" height="800px"
+                                                                            right="-100px">
+                                                                        <br>
+                                                                        <br>
+                                                                    </div>
+                                                                    <div class="col-md-4"
+                                                                        *ngFor="let item1 of pd.tbl_product_images;">
+                                                                        <img src="{{serverImgPath1}}{{item1.imgPath}}"
+                                                                            alt="product desc" width="400px"
+                                                                            height="400px"
+                                                                            (click)="onClickImageQuick(item1.imgPath)">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="info">
+                                                        <button type="button" class="btn btn-simple"
+                                                            data-dismiss="modal" (click)="modal.dismiss('Close click')"
+                                                            style="color: white;    display: flex;
+                                                            flex-direction: column-reverse;
+                                                            font-size: 25px;
+                                                            margin-top: -20px;
+                                                            flex-wrap: wrap;
+                                                            align-content: flex-end;
+                                                            font-size: large;">x</button>
+                                                        <h2 style="color: white;">{{pd.nameOf}}<br>
+                                                        </h2>
+                                                        <p style="color: white;">{{pd.description}}</p>
+                                                        <span class="price" style="color: white;">£{{pd.price | currency:' '}}</span>
+
+
+                                                        <a *ngIf="isLogged" class="add-wish">Add to Wishlist</a>
+                                                        <a *ngIf="!isLogged" (click)="onView1(info1,'1000')"
+                                                            class="add-wish">Add to Wishlist</a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </ng-template>
+
+                                        <ng-template #info1 let-modal style="top: 150px;">
+                                            <div style="height: 400px;">
+                                                <div style="padding-top: 0px;">
+                                                    <button type="button" class="btn btn-simple" data-dismiss="modal"
+                                                        (click)="modal.dismiss('Close click')" style="color: black;    display: flex;
+                                                    flex-direction: column-reverse;
+                                                    font-size: 25px;
+                                                   
+                                                    flex-wrap: wrap;
+                                                    align-content: flex-end;
+                                                    font-size: large;">x</button>
+                                                </div>
+                                                <br>
+                                                <div class="container">
+                                                    <div class="drop" style="top: -40px;">
+                                                        <div class="content">
+                                                            <h2 class='animate__heartBeat'>Welcome! Please login to
+                                                                continue.</h2>
+                                                            <a routerLink="/login" href="/login"
+                                                                style="top:120px;left:150px;;" class='btn1 login'
+                                                                data-dismiss="modal"
+                                                                (click)="modal.dismiss('Close click')">
+                                                                <div style="margin-top: 20px"><b>Login</b></div>
+                                                            </a>
+
+                                                        </div>
+                                                    </div>
+                                                    <a routerLink="/forgot-password" href="/forgot-password"
+                                                        style="top: 250px;" class='btn1' data-dismiss="modal"
+                                                        (click)="modal.dismiss('Close click')">
+                                                        <div style="margin-top: 20px"><b>Forgot Password</b></div>
+                                                    </a>
+                                                    <a href="#" class='btn1 signup' data-dismiss="modal"
+                                                        (click)="modal.dismiss('Close click')">
+                                                        <div style="margin-top: 20px"><b>Signup</b></div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </ng-template>
+                                    </div><!-- End .product-list-action -->
+                                </div><!-- End .col-sm-6 col-lg-3 -->
+
+                                <div class="col-lg-6">
+                                    <div class="product-body product-action-inner">
+                                        <a style="padding-left: 3px;" *ngIf="!isLogged" (click)="onView1(info1,'1000')"
+                                            class="btn-product btn-wishlist" title="Add to wishlist"><span>add
+                                                to wishlist</span></a>
+                                        <a style="padding-left: 3px;" *ngIf="isLogged"  (click)="addToWish(pd.custId,pd.nameOf,pd.imgPath,pd.price)"                                          class="btn-product btn-wishlist" title="Add to wishlist"><span>add
+                                                to wishlist</span></a>
+                                        <!-- <div class="product-cat">
+                                            <a href="#">{{pd.subCategoryName}}</a>
+                                        </div>End .product-cat -->
+                                        <h3 class="product-title"><a href="product.html">{{pd.nameOf}}</a></h3>
+                                        <!-- End .product-title -->
+
+                                        <div class="product-content">
+                                            <p>{{pd.description}} </p>
+                                        </div><!-- End .product-content -->
+
+                                        <div class="product-nav product-nav-thumbs">
+                                            <a class="active"
+                                                style="display: -webkit-inline-box; width:70px; height:50px"
+                                                *ngFor="let item of pd.tbl_product_images;">
+                                                <img src="{{serverImgPath1}}{{item.imgPath}}" alt="product desc"
+                                                    width="300px" height="300px"
+                                                    (click)="onClickImage(item.imgPath,ndx)">
+                                            </a>
+                                        </div><!-- End .product-nav -->
+                                    </div><!-- End .product-body -->
+                                </div><!-- End .col-lg-6 -->
+                            </div><!-- End .row -->
+                        </div><!-- End .product -->
+                    </div><!-- End .products -->
+
+
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination">
+                            <pagination-controls (pageChange)="listCount($event)"
+                                (pageChange)="p = $event"></pagination-controls>
+                            <!-- <li class="page-item disabled">
+                                <a class="page-link page-link-prev" href="#" aria-label="Previous" tabindex="-1" aria-disabled="true">
+                                    <span aria-hidden="true"><i class="icon-long-arrow-left"></i></span>Prev
+                                </a>
+                            </li>
+                            <li class="page-item active" aria-current="page"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item-total">of 6</li>
+                            <li class="page-item">
+                                <a class="page-link page-link-next" href="#" aria-label="Next">
+                                    Next <span aria-hidden="true"><i class="icon-long-arrow-right"></i></span>
+                                </a>
+                            </li> -->
+                        </ul>
+                    </nav>
+                </div><!-- End .col-lg-9 -->
+                <aside class="col-lg-3 order-lg-first">
+                    <div class="sidebar sidebar-shop">
+                        <div class="widget widget-clean">
+                            <label>Filters:</label>
+                            <a href="#" class="sidebar-filter-clear">Clean All</a>
+                        </div><!-- End .widget widget-clean -->
+
+                        <div class="widget widget-collapsible">
+                            <h3 class="widget-title">
+                                <a data-toggle="collapse" href="#widget-1" role="button" aria-expanded="true"
+                                    aria-controls="widget-1">
+                                    Sub Category
+                                </a>
+                            </h3><!-- End .widget-title -->
+
+                            <div class="collapse show" id="widget-1">
+                                <div class="widget-body">
+                                    <div class="filter-items filter-items-count">
+                                        <div class="filter-item" *ngFor="let pd of allSubCategories; let i=index;">
+                                            <input type="checkbox" id="cat-1" name="{{i}}" [checked]="pd.isSelected"
+                                                [value]="i" (change)="checkSubCategory($event)"> &nbsp;&nbsp;
+                                            {{pd.nameOf}}
+                                            <span class="item-count">{{pd.count}}</span>
+                                        </div><!-- End .filter-item -->
+                                    </div><!-- End .filter-items -->
+                                </div><!-- End .widget-body -->
+                            </div><!-- End .collapse -->
+                        </div><!-- End .widget -->
+                        <div class="widget widget-collapsible">
+                            <h3 class="widget-title">
+                                <a data-toggle="collapse" href="#widget-4" role="button" aria-expanded="true"
+                                    aria-controls="widget-4">
+                                    Brand
+                                </a>
+                            </h3><!-- End .widget-title -->
+                            <div class="collapse show" id="widget-4">
+                                <div class="widget-body">
+                                    <div class="filter-items filter-items-count">
+                                        <div class="filter-item" *ngFor="let pd of allbrand; let i=index;">
+                                            <input type="checkbox" id="brand-1" name="{{i}}" [checked]="pd.isSelected"
+                                                [value]="i" (change)="checkBrand($event)"> &nbsp;&nbsp; {{pd.nameOf}}
+                                            <span class="item-count">{{pd.count}}</span>
+                                        </div><!-- End .filter-item -->
+                                    </div><!-- End .filter-items -->
+                                </div><!-- End .widget-body -->
+                            </div><!-- End .collapse -->
+                        </div><!-- End .widget -->
+
+                        <div class="widget widget-collapsible">
+                            <h3 class="widget-title">
+                                <a data-toggle="collapse" href="#widget-5" role="button" aria-expanded="true"
+                                    aria-controls="widget-5">
+                                    Price
+                                </a>
+                            </h3><!-- End .widget-title -->
+
+                            <div class="collapse show" id="widget-5">
+                                <div class="widget-body">
+                                    <div class="filter-price">
+                                        <div class="filter-price-text">
+                                            Price Range:
+                                            <span id="filter-price-range"></span>
+                                        </div><!-- End .filter-price-text -->
+                                        <ngx-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"
+                                            (mouseup)="sliderEvent()"></ngx-slider>
+                                        <!-- <div id="price-slider"></div>End #price-slider -->
+                                    </div><!-- End .filter-price -->
+                                </div><!-- End .widget-body -->
+                            </div><!-- End .collapse -->
+                        </div><!-- End .widget -->
+                    </div><!-- End .sidebar sidebar-shop -->
+                </aside><!-- End .col-lg-3 -->
+            </div><!-- End .row -->
+        </div><!-- End .container -->
+    </div><!-- End .page-content -->
+</main><!-- End .main -->

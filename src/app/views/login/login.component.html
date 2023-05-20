@@ -1,0 +1,166 @@
+<main class="main">
+    <nav aria-label="breadcrumb" class="breadcrumb-nav border-0 mb-0">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Login</li>
+            </ol>
+        </div><!-- End .container -->
+    </nav><!-- End .breadcrumb-nav -->
+
+    <div class="login-page bg-image pt-8 pb-8 pt-md-12 pb-md-12 pt-lg-17 pb-lg-17"
+        style="background-image: url('assets/images/backgrounds/login-bg.jpg')">
+        <div class="container">
+            <div class="form-box">
+                <div class="form-tab">
+                    <ul class="nav nav-pills nav-fill" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="signin-tab-2" data-toggle="tab" href="#signin-2" role="tab"
+                                aria-controls="signin-2" aria-selected="false">Sign In</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="register-tab-2" data-toggle="tab" href="#register-2" role="tab"
+                                aria-controls="register-2" aria-selected="true">Register</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="signin-2" role="tabpanel"
+                            aria-labelledby="signin-tab-2">
+                            <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+                                <div class="form-group">
+                                    <label for="email">Username or email address *</label>
+                                    <input type="email" class="form-control" id="emai" #email="ngModel" name="email"
+                                        [(ngModel)]="formModel.email" placeholder="Email" required>
+                                </div><!-- End .form-group -->
+
+                                <div class="form-group">
+                                    <label for="password">Password *</label>
+                                    <input type="password" class="form-control" id="password" #password="ngModel"
+                                        name="password" [(ngModel)]="formModel.password" placeholder="Password"
+                                        required>
+                                </div><!-- End .form-group -->
+                                <form [formGroup]="aFormGroup">
+                                    <ngx-recaptcha2 #captchaElem [siteKey]="siteKey" formControlName="recaptcha">
+                                    </ngx-recaptcha2>
+                                </form>
+                                <div class="form-footer">
+                                    <button type="submit" class="btn btn-outline-primary-2"
+                                        [disabled]="!aFormGroup.valid">
+                                        <span>LOG IN</span>
+                                        <i class="icon-long-arrow-right"></i>
+                                    </button>
+
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="signin-remember-2">
+                                        <label class="custom-control-label" for="signin-remember-2">Remember Me</label>
+                                    </div><!-- End .custom-checkbox -->
+
+                                    <a routerLink="/forgot-password" href="/forgot-password" class="forgot-link">Forgot
+                                        Your Password?</a>
+                                </div><!-- End .form-footer -->
+                            </form>
+                           
+                        </div><!-- .End .tab-pane -->
+                        <div class="tab-pane fade" id="register-2" role="tabpanel" aria-labelledby="register-tab-2">
+                            <form [formGroup]="registerForm" (ngSubmit)="onSubmitRegister()">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label class="form-col-form-label" for="title">Title</label>
+                                            <select id="combobox"
+                                                [ngClass]="registerForm.get('title').errors ? 'is-invalid' : 'is-valid' "
+                                                class="form-control" data-live-search="true" formControlName="title">
+                                                <option selected disabled>Select Title..</option>
+                                                <option value="Mr">Mr</option>
+                                                <option value="Mrs">Mrs</option>
+                                                <option value="Rev">Rev</option>
+                                                <option value="Miss">Miss</option>
+                                                <option value="Baby">Baby</option>
+                                                <option value="Master">Master</option>
+                                            </select>
+                                            <div class="valid-feedback"
+                                                *ngIf="registerForm.get('title').touched && registerForm.get('title').errors?.required">
+                                                This value is required.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <div class="form-group">
+                                            <label class="form-col-form-label" for="firstName">First Name</label>
+                                            <input type="text" class="form-control"
+                                                [ngClass]="registerForm.get('firstName').errors ? 'is-invalid' : 'is-valid' "
+                                                id="firstName" formControlName="firstName">
+                                            <div class="valid-feedback"
+                                                *ngIf="registerForm.get('firstName').touched && registerForm.get('firstName').errors?.required">
+                                                This value is required.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="form-col-form-label" for="lastName">Last Name</label>
+                                            <input type="text" class="form-control"
+                                                [ngClass]="registerForm.get('lastName').errors ? 'is-invalid' : 'is-valid' "
+                                                id="lastName" formControlName="lastName">
+                                            <div class="valid-feedback"
+                                                *ngIf="registerForm.get('lastName').touched && registerForm.get('lastName').errors?.required">
+                                                This value is required.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="form-col-form-label" for="mobileNum">Phone</label>
+                                            <input type="text" class="form-control"
+                                                [ngClass]="registerForm.get('mobileNum').errors ? 'is-invalid' : 'is-valid' "
+                                                id="mobileNum" formControlName="mobileNum">
+                                            <div class="valid-feedback"
+                                                *ngIf="registerForm.get('mobileNum').touched && registerForm.get('mobileNum').errors?.required">
+                                                This value is required.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="email">Username or email address *</label>
+                                            <input type="email" class="form-control" id="emai" name="email"
+                                                [ngClass]="registerForm.get('email').errors ? 'is-invalid' : 'is-valid' "
+                                                id="email" formControlName="email" required>
+                                        </div><!-- End .form-group -->
+                                        <div class="valid-feedback"
+                                            *ngIf="registerForm.get('email').touched && registerForm.get('email').errors?.required">
+                                            This value is required.
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="password">Password *</label>
+                                            <input type="password" class="form-control" name="password" id="password"
+                                                formControlName="password" required>
+                                        </div><!-- End .form-group -->
+                                    </div>
+                                </div>
+                                <div class="form-footer">
+                                    <button type="submit" class="btn btn-outline-primary-2"
+                                        [disabled]="!registerForm.valid">
+                                        <span>SIGN UP</span>
+                                        <i class="icon-long-arrow-right"></i>
+                                    </button>
+
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="register-policy-2"
+                                            required>
+                                        <label class="custom-control-label" for="register-policy-2">I agree to the <a
+                                                href="#">privacy policy</a> *</label>
+                                    </div><!-- End .custom-checkbox -->
+                                </div><!-- End .form-footer -->
+                            </form>
+                           
+                        </div><!-- .End .tab-pane -->
+                    </div><!-- End .tab-content -->
+                </div><!-- End .form-tab -->
+            </div><!-- End .form-box -->
+        </div><!-- End .container -->
+    </div><!-- End .login-page section-bg -->
+</main><!-- End .main -->

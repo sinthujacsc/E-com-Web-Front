@@ -1,0 +1,365 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<main class="main" style="background-color: white;">
+    <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
+        <div class="container">
+            <h1 class="page-title">Checkout<span>Shop</span></h1>
+        </div><!-- End .container -->
+    </div><!-- End .page-header -->
+    <nav aria-label="breadcrumb" class="breadcrumb-nav">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="#">Shop</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Checkout</li>
+            </ol>
+        </div><!-- End .container -->
+    </nav><!-- End .breadcrumb-nav -->
+
+    <div class="page-content">
+        <div class="checkout">
+            <div class="container">
+                <div class="checkout-discount">
+                    <form action="#">
+                        <input type="text" class="form-control" required id="checkout-discount-input">
+                        <label for="checkout-discount-input" class="text-truncate">Have a coupon? <span>Click here to
+                                enter your code</span></label>
+                    </form>
+                </div><!-- End .checkout-discount -->
+                <form [formGroup]="saleBriefForm" (ngSubmit)="onSubmit()">
+                    <div class="row">
+                        <div class="col-lg-9">
+                            <h2 class="checkout-title">Billing Details</h2><!-- End .checkout-title -->
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label for="firstName">First Name *</label>
+                                    <input type="text" class="form-control"
+                                        [ngClass]="saleBriefForm.get('firstName').errors ? 'is-invalid' : 'is-valid' "
+                                        id="firstName" formControlName="firstName" placeholder="Enter the Name"
+                                        required>
+                                </div><!-- End .col-sm-6 -->
+
+                                <div class="col-sm-6">
+                                    <label for="lastName">Last Name *</label>
+                                    <input type="text" class="form-control"
+                                        [ngClass]="saleBriefForm.get('lastName').errors ? 'is-invalid' : 'is-valid' "
+                                        id="lastName" formControlName="lastName" placeholder="Enter the Last Name"
+                                        required>
+                                </div>
+                                <!-- End .col-sm-6 -->
+                            </div><!-- End .row -->
+
+                            <!-- <label for="companyName">Company Name</label>
+                            <input type="text" class="form-control" [ngClass]="saleBriefForm.get('companyName')"
+                                id="companyName" formControlName="companyName" placeholder="Enter the Company Name"> -->
+
+                            <label for="billingAdd1">Street address 1 *</label>
+                            <input type="text" class="form-control"
+                                [ngClass]="saleBriefForm.get('billingAdd1').errors ? 'is-invalid' : 'is-valid' "
+                                id="billingAdd1" formControlName="billingAdd1"
+                                placeholder="Enter the Billing Address 01" autocomplete="off" required>
+                            <label for="billingAdd2">Street address 2 </label>
+                            <input type="text" class="form-control" [ngClass]="saleBriefForm.get('billingAdd2')"
+                                id="billingAdd2" formControlName="billingAdd2"
+                                placeholder="Enter the Billing Address 02" autocomplete="off">
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label for="billingCity">Town / City *</label>
+                                    <input type="text" class="form-control"
+                                        [ngClass]="saleBriefForm.get('billingCity').errors ? 'is-invalid' : 'is-valid' "
+                                        id="billingCity" formControlName="billingCity"
+                                        placeholder="Enter the Billing City" autocomplete="off" required>
+                                </div><!-- End .col-sm-6 -->
+
+                                <div class="col-sm-6">
+                                    <label for="billingCountry">Country *</label>
+                                    <input type="text" class="form-control"
+                                        [ngClass]="saleBriefForm.get('billingCountry').errors ? 'is-invalid' : 'is-valid' "
+                                        id="billingCountry" formControlName="billingCountry"
+                                        placeholder="Enter the Country" autocomplete="off" required>
+                                </div><!-- End .col-sm-6 -->
+                            </div><!-- End .row -->
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label for="billingPostcode">Postcode / ZIP *</label>
+                                    <input type="text" class="form-control"
+                                        [ngClass]="saleBriefForm.get('billingPostcode').errors ? 'is-invalid' : 'is-valid' "
+                                        id="billingPostcode" formControlName="billingPostcode"
+                                        placeholder="Enter the Billing Postal Code" autocomplete="off" required>
+                                </div><!-- End .col-sm-6 -->
+
+                                <div class="col-sm-6">
+                                    <label for="mobileNum">Phone *</label>
+                                    <input type="text" class="form-control"
+                                        [ngClass]="saleBriefForm.get('mobileNum').errors ? 'is-invalid' : 'is-valid' "
+                                        id="mobileNum" formControlName="mobileNum" placeholder="Enter the Mobile Number"
+                                        required>
+                                </div><!-- End .col-sm-6 -->
+                            </div><!-- End .row -->
+
+                            <label for="email">Email address *</label>
+                            <input type="text" class="form-control"
+                                [ngClass]="saleBriefForm.get('email').errors ? 'is-invalid' : 'is-valid' " id="email"
+                                formControlName="email" placeholder="Enter the Email" required>
+
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="checkout-diff-address"
+                                    (click)="isViewedShipping()">
+                                <label class="custom-control-label" for="checkout-diff-address">Ship to a different
+                                    address?</label>
+                            </div><!-- End .custom-checkbox -->
+
+                            <div *ngIf="isViewed">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <label for="shippingFirstName">Shipping First Name *</label>
+                                        <input type="text" class="form-control" id="shippingFirstName"
+                                            formControlName="shippingFirstName" placeholder="Enter the First Name"
+                                            required>
+                                    </div><!-- End .col-sm-6 -->
+
+                                    <div class="col-sm-6">
+                                        <label for="shippingLastName">Shipping Last Name *</label>
+                                        <input type="text" class="form-control" id="shippingLastName"
+                                            formControlName="shippingLastName" placeholder="Enter the Last Name"
+                                            required>
+                                    </div>
+                                    <!-- End .col-sm-6 -->
+                                </div><!-- End .row -->
+
+                                <!-- <label for="shippingCompany"> Shipping Company Name (Optional)</label>
+                                <input type="text" class="form-control" id="shippingCompany"
+                                    formControlName="shippingCompany" placeholder="Enter the Company Name"> -->
+
+                                <label for="shippingAdd1">Street address 1 *</label>
+                                <input type="text" class="form-control" id="shippingAdd1" formControlName="shippingAdd1"
+                                    placeholder="Enter the Shipping Address 01" required>
+                                <label for="shippingAdd2">Street address 2 </label>
+                                <input type="text" class="form-control" id="shippingAdd2" formControlName="shippingAdd2"
+                                    placeholder="Enter the Shipping Address 02">
+
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <label for="shippingCity">Town / City *</label>
+                                        <input type="text" class="form-control" id="shippingCity"
+                                            formControlName="shippingCity" placeholder="Enter the Shiping City"
+                                            required>
+                                    </div><!-- End .col-sm-6 -->
+
+                                    <div class="col-sm-6">
+                                        <label for="shippingCountry">Country *</label>
+                                        <input type="text" class="form-control" id="shippingCountry"
+                                            formControlName="shippingCountry" placeholder="Enter the Country" required>
+                                    </div><!-- End .col-sm-6 -->
+                                </div><!-- End .row -->
+                                <div class="col-sm-6">
+                                    <label for="shippingEmail">Email *</label>
+                                    <input type="text" class="form-control" id="shippingEmail"
+                                        formControlName="shippingEmail" placeholder="Enter the Email" required>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <label for="shippingPostcode">Postcode / ZIP *</label>
+                                        <input type="text" class="form-control" id="shippingPostcode"
+                                            formControlName="shippingPostcode"
+                                            placeholder="Enter the Shipping Postal Code" required>
+                                    </div><!-- End .col-sm-6 -->
+                                    <div class="col-sm-6">
+                                        <label for="shippingMobileNum">Phone *</label>
+                                        <input type="text" class="form-control" id="shippingMobileNum"
+                                            formControlName="shippingMobileNum" placeholder="Enter the Mobile Number"
+                                            required>
+                                    </div>
+
+                                </div><!-- End .row -->
+
+                            </div>
+                            <!-- <label for="discriptionOf">Order notes </label>
+                            <textarea class="form-control" cols="30" rows="4" id="discriptionOf"
+                                formControlName="discriptionOf" placeholder="Enter the Note"></textarea> -->
+                        </div><!-- End .col-lg-9 -->
+                        <aside class="col-lg-3">
+                            <div class="summary">
+                                <h3 class="summary-title">Your Order</h3><!-- End .summary-title -->
+
+                                <table class="table table-summary">
+                                    <thead>
+                                        <tr>
+                                            <th>Product</th>
+                                            <th>Total</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <tr *ngFor="let pd of cartItems; index as i">
+                                            <td><a href="#">{{pd.itemName}}</a></td>
+                                            <td>£{{pd.price | currency:' '}}</td>
+                                        </tr>
+                                        <tr class="summary-subtotal" *ngFor="let pd of shippingServiceDe">
+                                            <td>Subtotal:</td>
+                                            <td>£{{pd.totalPrice | currency:' '}}</td>
+                                        </tr><!-- End .summary-subtotal -->
+                                        <tr *ngFor="let pd of serviceDe">
+                                            <td>Shipping:</td>
+                                            <td>{{pd.serviceName}}</td>
+                                        </tr>
+                                        <tr class="summary-total" *ngFor="let pd of shippingServiceDe">
+                                            <td>Total:</td>
+                                            <td>£{{pd.checkoutPrice | currency:' '}}</td>
+                                        </tr><!-- End .summary-total -->
+                                    </tbody>
+                                </table><!-- End .table table-summary -->
+
+                                <div class="accordion-summary" id="accordion-payment">
+                                    <!-- <div class="card">
+                                        <div class="card-header" id="heading-1">
+                                            <h2 class="card-title">
+                                                <a role="button" data-toggle="collapse" href="#collapse-1"
+                                                    aria-expanded="true" aria-controls="collapse-1">
+                                                    Direct bank transfer
+                                                </a>
+                                            </h2>
+                                        </div>
+                                        <div id="collapse-1" class="collapse show" aria-labelledby="heading-1"
+                                            data-parent="#accordion-payment">
+                                            <div class="card-body">
+                                                Make your payment directly into our bank account. Please use your Order
+                                                ID as the payment reference. Your order will not be shipped until the
+                                                funds have cleared in our account.
+                                            </div>
+                                        </div>
+                                    </div> -->
+
+
+
+                                    <div class="card">
+                                        <div class="card-header" id="heading-3">
+                                            <h2 class="card-title">
+                                                <a class="collapsed" role="button" (click)="isCashShipping()"
+                                                    data-toggle="collapse" href="#collapse-3" aria-expanded="false"
+                                                    aria-controls="collapse-3">
+                                                    Cash on delivery
+                                                </a>
+                                            </h2>
+                                        </div><!-- End .card-header -->
+                                        <div id="collapse-3" class="collapse" aria-labelledby="heading-3"
+                                            data-parent="#accordion-payment">
+                                            <div class="card-body">payment for the order is collected when the products
+                                                are delivered to the customer. Be ready to pay at your door steps
+                                            </div><!-- End .card-body -->
+                                        </div><!-- End .collapse -->
+                                    </div><!-- End .card -->
+
+
+                                    <div class="card">
+                                        <div class="card-header" id="heading-5">
+                                            <h2 class="card-title">
+
+                                                <a class="collapsed" role="button" (click)="isOpayoShipping()"
+                                                    data-toggle="collapse" href="#collapse-5" aria-expanded="false"
+                                                    aria-controls="collapse-5">
+                                                    <div class="row">
+                                                        <div class="col-md-2" style="margin-top:-12px">
+                                                            <img src="assets/img/images.png" alt="payments cards"
+                                                                height="200" width="20o">
+                                                        </div>
+                                                        <div class="col-md-10" style="margin-left:-15px">
+                                                            Opayo
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </h2>
+                                        </div><!-- End .card-header -->
+                                        <div id="collapse-5" class="collapse" aria-labelledby="heading-5"
+                                            data-parent="#accordion-payment">
+                                            <div class="card-body"> Donec nec justo eget felis facilisis fermentum.Lorem
+                                                ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque
+                                                volutpat mattis eros. Lorem ipsum dolor sit ame.
+                                            </div><!-- End .card-body -->
+                                        </div><!-- End .collapse -->
+                                    </div><!-- End .card -->
+                                </div><!-- End .accordion -->
+
+                                <button type="submit" class="btn btn-outline-primary-2 btn-order btn-block">
+                                    <span class="btn-hover-text">Proceed to Checkout</span>
+                                </button>
+                            </div><!-- End .summary -->
+                        </aside><!-- End .col-lg-3 -->
+                    </div><!-- End .row -->
+                </form>
+            </div><!-- End .container -->
+        </div><!-- End .checkout -->
+    </div><!-- End .page-content -->
+</main><!-- End .main -->
+
+<ng-template #info let-modal>
+    <form [formGroup]="paymentForm" (submit)="processPayment()">
+        <div class="wrapper" style="margin-top: -45px;">
+            <div class="payment">
+                <div class="payment-logo">
+                    <p>p</p>
+                </div>
+                <h2>Payment Gateway</h2>
+                <div class="form">
+                    <div class="card space icon-relative">
+                        <label class="label" for="cardholderName">Card holder:</label>
+                        <input type="text" class="input" name="cardholderName" id="cardholderName"
+                            formControlName="cardholderName" placeholder="Enter cardholderName">
+                        <i class="fa fas fa-user"></i>
+                    </div>
+                    <div class="card space icon-relative">
+                        <label class="label" for="cardNumber">Card number:</label>
+                        <input  type="text" name="cardNumber" id="cardNumber" class="input" (input)="formatCardNumber($event)" formControlName="cardNumber"
+                             placeholder="Card Number">
+                        <i class="fa far fa-credit-card"></i>
+                    </div>
+                    <div class="card-grp space">
+                        <div class="card-item icon-relative">
+                            <label class="label" for="expiryDate">Expiry date:</label>
+                            <input type="text" name="expiryDate" id="expiryDate" (input)="formatExpiryDate($event)"  formControlName="expiryDate"
+                                class="input" placeholder="MM / YY">
+                            <i class="fa far fa-calendar"></i>
+                        </div>
+                        <div class="card-item icon-relative">
+                            <label class="label" for="securityCode">CVC:</label>
+                            <input type="text" class="input" name="securityCode" id="securityCode"
+                                formControlName="securityCode" placeholder="000" (input)="formatSecurityCode($event)">
+                            <i class="fa fas fa-lock"></i>
+                        </div>
+                    </div>
+
+                    <!-- <div class="btn" onclick="document.forms[0].submit()">
+                                Pay
+                            </div> -->
+                    <button type="submit" class="btn btn-simple" data-dismiss="modal"> Pay</button>
+                    <!-- <button type="button" class="btn btn-simple" data-dismiss="modal"
+                            (click)="modal.dismiss('Close click')"> Pay</button> -->
+
+                </div>
+            </div>
+        </div>
+        <!-- <div>
+                  <label for="cardholderName">Cardholder Name:</label>
+                  <input type="text" name="cardholderName"  id="cardholderName" formControlName="cardholderName"
+                  placeholder="Enter the CardHolder Name" autocomplete="off" required>
+                </div>
+                <div>
+                  <label for="cardNumber">Card Number:</label>
+                  <input type="text" name="cardNumber"  id="cardNumber" formControlName="cardNumber"
+                  placeholder="Enter the cardNumber" autocomplete="off" required>
+                </div>
+                <div>
+                  <label for="expiryDate">Expiry Date:</label>
+                  <input type="text" name="expiryDate"  id="expiryDate" formControlName="expiryDate"
+                  placeholder="Enter the expiryDate" autocomplete="off" required>
+                </div>
+                <div>
+                  <label for="securityCode">Security Code:</label>
+                  <input type="text" name="securityCode"  id="securityCode" formControlName="securityCode"
+                  placeholder="Enter the securityCode" autocomplete="off" required>
+                </div> -->
+        <!-- <button type="submit">Submit Payment</button> -->
+    </form>
+</ng-template>

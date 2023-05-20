@@ -1,0 +1,563 @@
+<script>
+    function showCard(cardId) {
+        // Hide all cards
+        var cards = document.getElementsByClassName('col-md-7 grid-margin stretch-card');
+        for (var i = 0; i < cards.length; i++) {
+            cards[i].style.display = 'none';
+        }
+
+        // Show the selected card
+        var cardToShow = document.getElementById(cardId);
+        if (cardToShow) {
+            cardToShow.style.display = 'block';
+        }
+    }
+</script>
+<div class="main-panel" >
+    <div class="container">
+
+
+        <div class="row">
+            <div class="col-md-5 grid-margin stretch-card">
+                <div class="card" style=" margin-right: -20px; margin-bottom:20px;padding-bottom:3px">
+                    <div class="profile-card" style="margin-bottom: -20px;">
+
+                        <div class="profile-header">
+
+                            <div class="cover-image">
+                                <img (click)="f2_input.click()" [src]="profileCoverImageSrc" class="img img-fluid">
+                                <input accept="image/png,image/jpeg,image/jpg" type="file" multiple hidden #f2_input
+                                    (change)="handleCoverImage(f2_input.files!, $event)" />
+                            </div>
+                            <div class="user-image">
+                                <img (click)="f1_input.click()" [src]="profileImageSrc" class="img ">
+
+                                <input accept="image/png,image/jpeg,image/jpg" type="file" multiple hidden #f1_input
+                                    (change)="handleImage(f1_input.files!, $event)" />
+                            </div>
+                        </div>
+
+                        <div class="profile-content">
+                            <div class="profile-name">{{user.firstName}} {{user.lastName}}</div>
+                            <ul class="profile-info-list">
+                                <div id="editProfileCard" class="col-md-7 grid-margin stretch-card">
+
+                                    <p class="card-description">User Information</p><a href="" data-toggle="modal"
+                                        data-target="#exampleModal1" class="about-item-edit"
+                                        (click)="onEditUserInfo(user.custId)" style="margin-right: -200px;">Edit</a>
+                                    <ul class="about">
+                                        <li class="about-items"><i class="mdi mdi-mail icon-sm "></i><span
+                                                class="about-item-name">Name:</span><span style="white-space: nowrap;" class="about-item-detail">
+                                                {{user.title}} {{user.firstName}} {{user.lastName}}</span></li>
+
+                                        <li class="about-items"><i class="mdi mdi-mail-ru icon-sm "></i><span
+                                                class="about-item-name">username:</span><span
+                                                class="about-item-detail">{{user.email}}</span></li>
+                                    </ul>
+
+                                    <p class="card-description">Contact Information</p><a href=""
+                                        class="about-item-edit" data-toggle="modal" data-target="#exampleModal2"
+                                        (click)="onEditContactInfo(user.custId)" style="margin-right: -200px;">Edit</a>
+                                    <ul class="about">
+                                        <li class="about-items"><i class="mdi mdi-phone icon-sm "></i>
+                                            <span class="about-item-name">Phone:</span>
+                                            <span class="about-item-detail">{{user.mobileNum}}</span>
+
+                                        </li>
+
+                                        <li class="about-items"><i class="mdi mdi-email-outline icon-sm "></i><span
+                                                class="about-item-name">Email:</span><span class="about-item-detail"><a
+                                                    href="">{{user.email}}</a></span> </li>
+                                        <li class="about-items"><i class="mdi mdi-cake icon-sm "></i><span
+                                                class="about-item-name">Birthday:</span><span
+                                                class="about-item-detail">{{user.dateOfBirth}}
+                                            </span></li>
+                                    </ul>
+
+                                </div>
+
+                            </ul>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+
+            <div id="editProfileCard" class="col-md-7 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body" style="margin-bottom: 20px;">
+                        <p class="card-title font-weight-bold">About</p>
+                        <hr>                       
+                        <p class="card-description">Billing Information</p><a href="" class="about-item-edit"
+                            data-toggle="modal" data-target="#exampleModal3"
+                            (click)="onEditBillingInfo(user.custId)">Edit</a>
+                        <ul class="about">
+
+                            <li class="about-items"><i class="mdi mdi-account icon-sm "></i><span
+                                    class="about-item-name">Address 1:</span><span
+                                    class="about-item-detail">{{user.billingAdd1}}</span> </li>
+                            <li class="about-items"><i class="mdi mdi-clipboard-account icon-sm "></i><span
+                                    class="about-item-name">Address 2:</span><span
+                                    class="about-item-detail">{{user.billingAdd2}}</span>
+                            </li>
+                            <li class="about-items"><i class="mdi mdi-water icon-sm "></i><span
+                                    class="about-item-name">City:</span><span
+                                    class="about-item-detail">{{user.billingCity}}</span>
+                            </li>
+                            <li class="about-items"><i class="mdi mdi-water icon-sm "></i><span
+                                    class="about-item-name">Post Code:</span><span
+                                    class="about-item-detail">{{user.billingPostcode}}</span>
+                            </li>
+                            <li class="about-items"><i class="mdi mdi-human-male-female icon-sm "></i><span
+                                    class="about-item-name">Country:</span><span
+                                    class="about-item-detail">{{user.billingCountry}}</span>
+                            </li>
+                        </ul>
+                        <p class="card-description">Shipping Information</p> <a href="" class="about-item-edit"
+                            data-toggle="modal" data-target="#exampleModal4"
+                            (click)="onEditShippingInfo(user.custId)">Edit</a>
+                        <ul class="about">
+
+                            <li class="about-items"><i class="mdi mdi-account icon-sm "></i><span
+                                    class="about-item-name">Address 1:</span><span
+                                    class="about-item-detail">{{user.shippingAdd1}}</span></li>
+                            <li class="about-items"><i class="mdi mdi-clipboard-account icon-sm "></i><span
+                                    class="about-item-name">Address 2:</span><span
+                                    class="about-item-detail">{{user.shippingAdd2}}</span>
+                            </li>
+                            <li class="about-items"><i class="mdi mdi-water icon-sm "></i><span
+                                    class="about-item-name">City:</span><span
+                                    class="about-item-detail">{{user.shippingCity}}</span>
+                            </li>
+                            <li class="about-items"><i class="mdi mdi-water icon-sm "></i><span
+                                    class="about-item-name">Post Code:</span><span
+                                    class="about-item-detail">{{user.shippingPostcode}}</span>
+                            </li>
+                            <li class="about-items"><i class="mdi mdi-human-male-female icon-sm "></i><span
+                                    class="about-item-name">Country:</span><span
+                                    class="about-item-detail">{{user.shippingCountry}}</span>
+                            </li>
+                        </ul>
+
+
+                    </div>
+                </div>
+            </div>
+            <!-- HTML code that references the showCard function -->
+
+
+
+        </div>
+
+
+
+
+    </div>
+    <!-- content-wrapper ends -->
+    <!-- partial:partials/_footer.html -->
+
+
+    <!-- partial -->
+</div>
+<br>
+
+<!-- user info -->
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="row">
+                    <div class="col-md-10">
+                        <h5 class="modal-title" id="exampleModalLabel">Edit User Information</h5>
+                    </div>
+                    <div class="col-md-2">
+                        <button style="display: initial !important;" type="button" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                            <span aria-hidden="true" style="font-size: 3.6rem;">&times;</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="myprofileForm" (ngSubmit)="onSubmitUserInfo()">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label class="form-col-form-label" for="title">Title</label>
+                                    <select id="combobox"
+                                        [ngClass]="myprofileForm.get('title').errors ? 'is-invalid' : 'is-valid' "
+                                        class="form-control" data-live-search="true" formControlName="title">
+                                        <option selected disabled>Select Title..</option>
+                                        <option value="Mr">Mr</option>
+                                        <option value="Mrs">Mrs</option>
+                                        <option value="Rev">Rev</option>
+                                        <option value="Miss">Miss</option>
+                                        <option value="Baby">Baby</option>
+                                        <option value="Master">Master</option>
+                                    </select>
+                                    <div class="valid-feedback"
+                                        *ngIf="myprofileForm.get('title').touched && myprofileForm.get('title').errors?.required">
+                                        This value is required.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="form-group">
+                                    <label class="form-col-form-label" for="firstName">First Name</label>
+                                    <input type="text" class="form-control"
+                                        [ngClass]="myprofileForm.get('firstName').errors ? 'is-invalid' : 'is-valid' "
+                                        id="firstName" formControlName="firstName">
+                                    <div class="valid-feedback"
+                                        *ngIf="myprofileForm.get('firstName').touched && myprofileForm.get('firstName').errors?.required">
+                                        This value is required.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="form-col-form-label" for="lastName">Last Name</label>
+                                    <input type="text" class="form-control"
+                                        [ngClass]="myprofileForm.get('lastName').errors ? 'is-invalid' : 'is-valid' "
+                                        id="lastName" formControlName="lastName">
+                                    <div class="valid-feedback"
+                                        *ngIf="myprofileForm.get('lastName').touched && myprofileForm.get('lastName').errors?.required">
+                                        This value is required.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="form-col-form-label" for="email">User Name</label>
+                                    <input type="text" class="form-control"
+                                        [ngClass]="myprofileForm.get('email').errors ? 'is-invalid' : 'is-valid' "
+                                        id="email" formControlName="email">
+                                    <div class="valid-feedback"
+                                        *ngIf="myprofileForm.get('email').touched && myprofileForm.get('email').errors?.required">
+                                        This value is required.
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                    <div class="card-footer" style="margin-bottom: 10px;">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <button style="float: left;margin-bottom: 10px;" type="submit"
+                                    class="btn btn-sm btn-success"><i class="fa fa-dot-circle-o"></i>
+                                    <b>Submit</b>
+                                </button>
+                            </div>
+                            <div class="col-md-6">
+                                <button style="float: right;margin-bottom: 10px;" type="reset"
+                                    class="btn btn-sm btn-warning"><i class="fa fa-ban">
+                                    </i><b>Reset</b>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="row">
+                    <div class="col-md-10">
+                        <h5 class="modal-title" id="exampleModalLabel">Edit Contact Information</h5>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" style="font-size: 3.6rem;">&times;</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="myprofileForm1" (ngSubmit)="onSubmitContactInfo()">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="form-col-form-label" for="mobileNum">Phone</label>
+                                    <input type="text" class="form-control"
+                                        [ngClass]="myprofileForm1.get('mobileNum').errors ? 'is-invalid' : 'is-valid' "
+                                        id="mobileNum" formControlName="mobileNum">
+                                    <div class="valid-feedback"
+                                        *ngIf="myprofileForm1.get('mobileNum').touched && myprofileForm1.get('mobileNum').errors?.required">
+                                        This value is required.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="form-col-form-label" for="dateOfBirth">Birthday</label>
+                                    <input type="date" class="form-control"
+                                        [ngClass]="myprofileForm1.get('dateOfBirth').errors ? 'is-invalid' : 'is-valid' "
+                                        id="dateOfBirth" formControlName="dateOfBirth">
+                                    <div class="valid-feedback"
+                                        *ngIf="myprofileForm1.get('dateOfBirth').touched && myprofileForm1.get('dateOfBirth').errors?.required">
+                                        This value is required.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="card-footer" style="margin-bottom: 10px;">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <button style="float: left;margin-bottom: 10px;" type="submit"
+                                    class="btn btn-sm btn-success" [disabled]="!myprofileForm1.valid"><i
+                                        class="fa fa-dot-circle-o"></i>
+                                    <b>Submit</b>
+                                </button>
+                            </div>
+                            <div class="col-md-6">
+                                <button style="float: right;margin-bottom: 10px;" type="reset"
+                                    class="btn btn-sm btn-warning"><i class="fa fa-ban">
+                                    </i><b>Reset</b>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="row">
+                    <div class="col-md-10">
+                        <h5 class="modal-title" id="exampleModalLabel">Edit Billing Information</h5>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" style="font-size: 3.6rem;">&times;</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="myprofileForm2" (ngSubmit)="onSubmitBillingInfo()">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="form-col-form-label" for="billingAdd1">Address 1</label>
+                                    <input type="text" class="form-control"
+                                        [ngClass]="myprofileForm2.get('billingAdd1').errors ? 'is-invalid' : 'is-valid' "
+                                        id="billingAdd1" formControlName="billingAdd1">
+                                    <div class="valid-feedback"
+                                        *ngIf="myprofileForm2.get('billingAdd1').touched && myprofileForm2.get('billingAdd1').errors?.required">
+                                        This value is required.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="form-col-form-label" for="billingAdd2">Address 2</label>
+                                    <input type="text" class="form-control"
+                                        [ngClass]="myprofileForm2.get('billingAdd2').errors ? 'is-invalid' : 'is-valid' "
+                                        id="billingAdd2" formControlName="billingAdd2">
+                                    <div class="valid-feedback"
+                                        *ngIf="myprofileForm2.get('billingAdd2').touched && myprofileForm2.get('billingAdd2').errors?.required">
+                                        This value is required.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="form-col-form-label" for="billingCity">City</label>
+                                    <input type="text" class="form-control"
+                                        [ngClass]="myprofileForm2.get('billingCity').errors ? 'is-invalid' : 'is-valid' "
+                                        id="billingCity" formControlName="billingCity">
+                                    <div class="valid-feedback"
+                                        *ngIf="myprofileForm2.get('billingCity').touched && myprofileForm2.get('billingCity').errors?.required">
+                                        This value is required.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="form-col-form-label" for="billingPostcode">Postcode</label>
+                                    <input type="text" class="form-control"
+                                        [ngClass]="myprofileForm2.get('billingPostcode').errors ? 'is-invalid' : 'is-valid' "
+                                        id="billingPostcode" formControlName="billingPostcode">
+                                    <div class="valid-feedback"
+                                        *ngIf="myprofileForm2.get('billingPostcode').touched && myprofileForm2.get('billingPostcode').errors?.required">
+                                        This value is required.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="form-col-form-label" for="billingCountry">Country</label>
+                                    <input type="text" class="form-control"
+                                        [ngClass]="myprofileForm2.get('billingCountry').errors ? 'is-invalid' : 'is-valid' "
+                                        id="billingCountry" formControlName="billingCountry">
+                                    <div class="valid-feedback"
+                                        *ngIf="myprofileForm2.get('billingCountry').touched && myprofileForm2.get('billingCountry').errors?.required">
+                                        This value is required.
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="card-footer" style="margin-bottom: 10px;">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <button style="float: left;margin-bottom: 10px;" type="submit"
+                                    class="btn btn-sm btn-success" [disabled]="!myprofileForm2.valid"><i
+                                        class="fa fa-dot-circle-o"></i>
+                                    <b>Submit</b>
+                                </button>
+                            </div>
+                            <div class="col-md-6">
+                                <button style="float: right;margin-bottom: 10px;" type="reset"
+                                    class="btn btn-sm btn-warning"><i class="fa fa-ban">
+                                    </i><b>Reset</b>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="exampleModal4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="row">
+                    <div class="col-md-10">
+                        <h5 class="modal-title" id="exampleModalLabel">Edit Shipping Information</h5>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" style="font-size: 3.6rem;">&times;</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="myprofileForm3" (ngSubmit)="onSubmitShippingInfo()">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-check pb-2">
+                                    <input class="form-check-input" type="checkbox" value="option1" id="checkbox1"
+                                        (change)="checkValue($event)" [(ngModel)]="checked"
+                                        [ngModelOptions]="{standalone: true}">
+                                    <label class="form-check-label" for="checkbox1">
+                                        Same as Billing Information
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="form-col-form-label" for="shippingAdd1">Address 1</label>
+                                    <input type="text" class="form-control"
+                                        [ngClass]="myprofileForm3.get('shippingAdd1').errors ? 'is-invalid' : 'is-valid' "
+                                        id="shippingAdd1" formControlName="shippingAdd1">
+                                    <div class="valid-feedback"
+                                        *ngIf="myprofileForm3.get('shippingAdd1').touched && myprofileForm3.get('shippingAdd1').errors?.required">
+                                        This value is required.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="form-col-form-label" for="shippingAdd2">Address 2</label>
+                                    <input type="text" class="form-control"
+                                        [ngClass]="myprofileForm3.get('shippingAdd2').errors ? 'is-invalid' : 'is-valid' "
+                                        id="shippingAdd2" formControlName="shippingAdd2">
+                                    <div class="valid-feedback"
+                                        *ngIf="myprofileForm3.get('shippingAdd2').touched && myprofileForm3.get('shippingAdd2').errors?.required">
+                                        This value is required.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="form-col-form-label" for="shippingCity">City</label>
+                                    <input type="text" class="form-control"
+                                        [ngClass]="myprofileForm3.get('shippingCity').errors ? 'is-invalid' : 'is-valid' "
+                                        id="shippingCity" formControlName="shippingCity">
+                                    <div class="valid-feedback"
+                                        *ngIf="myprofileForm3.get('shippingCity').touched && myprofileForm3.get('shippingCity').errors?.required">
+                                        This value is required.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="form-col-form-label" for="shippingPostcode">Postcode</label>
+                                    <input type="text" class="form-control"
+                                        [ngClass]="myprofileForm3.get('shippingPostcode').errors ? 'is-invalid' : 'is-valid' "
+                                        id="shippingPostcode" formControlName="shippingPostcode">
+                                    <div class="valid-feedback"
+                                        *ngIf="myprofileForm3.get('shippingPostcode').touched && myprofileForm3.get('shippingPostcode').errors?.required">
+                                        This value is required.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="form-col-form-label" for="shippingCountry">Country</label>
+                                    <input type="text" class="form-control"
+                                        [ngClass]="myprofileForm3.get('shippingCountry').errors ? 'is-invalid' : 'is-valid' "
+                                        id="shippingCountry" formControlName="shippingCountry">
+                                    <div class="valid-feedback"
+                                        *ngIf="myprofileForm3.get('shippingCountry').touched && myprofileForm3.get('shippingCountry').errors?.required">
+                                        This value is required.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="card-footer" style="margin-bottom: 10px;">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <button style="float: left;margin-bottom: 10px;" type="submit"
+                                    class="btn btn-sm btn-success" [disabled]="!myprofileForm3.valid"><i
+                                        class="fa fa-dot-circle-o"></i>
+                                    <b>Submit</b>
+                                </button>
+                            </div>
+                            <div class="col-md-6">
+                                <button style="float: right;margin-bottom: 10px;" type="reset"
+                                    class="btn btn-sm btn-warning"><i class="fa fa-ban">
+                                    </i><b>Reset</b>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,55 @@
+ 
+.input1 {
+	display: none;
+  }
+ .button1 {
+	padding: 0;
+	margin: 0;
+	border-style: none;
+	touch-action: manipulation;
+	display: inline-block;
+	border: none;
+	background: none;
+	cursor: pointer;
+}
+/* Sass Config */
+/* $btn_grey: #575757; Contrast : 7.2:1 */
+/* End Sass Config */
+.qty {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	text-align: center;
+}
+.qty label {
+	flex: 1 0 100%;
+}
+.qty input {
+	width: 7rem;
+	height: 3rem;
+	font-size: 1.3rem;
+	text-align: center;
+	border: 1px solid #575757;
+}
+.qty button {
+	width: 3rem;
+	height: 3rem;
+	color: #fff;
+	font-size: 2rem;
+	background: #575757;
+}
+.qty button.qtyminus {
+	margin-right: 0.3rem;
+}
+.qty button.qtyplus {
+	margin-left: 0.3rem;
+}
+.form-group {
+	width: 10%;
+	margin: 30px;
+}
+	.form-group.input[type="text"] {
+		width: 100%;
+		text-align: right;
+	}
+	

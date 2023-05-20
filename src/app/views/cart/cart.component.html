@@ -1,0 +1,147 @@
+<main class="main" style="background-color: white;">
+    <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
+        <div class="container">
+            <h1 class="page-title">Shopping Cart<span>Shop</span></h1>
+        </div><!-- End .container -->
+    </div><!-- End .page-header -->
+    <nav aria-label="breadcrumb" class="breadcrumb-nav">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="#">Shop</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Shopping Cart</li>
+            </ol>
+        </div><!-- End .container -->
+    </nav><!-- End .breadcrumb-nav -->
+
+    <div class="page-content">
+        <div class="cart">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-9">
+                        <table class="table table-cart table-mobile">
+                            <thead>
+                                <tr>
+                                    <th style="width: 50%;">Product</th>
+                                    <th style="width: 10%;">Price</th>
+                                    <th style="width: 30%;text-align: center;">Quantity</th>
+                                    <th style="width: 10%;">Total</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr *ngFor="let pd of cartItems">
+                                    <td style="width: 50%;" class="product-col">
+                                        <div class="product">
+                                            <figure class="product-media">
+                                                <a>
+                                                    <img style="padding: inherit;" src="{{serverImgPath}}{{pd.imgPath}}"
+                                                        alt="Product image">
+                                                </a>
+                                            </figure>
+
+                                            <h3 class="product-title">
+                                                <a>{{pd.itemName}}</a>
+                                            </h3><!-- End .product-title -->
+                                        </div><!-- End .product -->
+                                    </td>
+                                    <td style="width: 10%;" class="price-col">£{{pd.price}}</td>
+                                    <td style="width: 30%; text-align: center;" class="quantity-col">
+                                        <div class="button1">
+                                            <button (click)="handleMinus(pd.itemId)"
+                                                style=" display:flex;background-color: white;padding-right: 3px;margin-left: 15px;"
+                                                class="qtyminus" aria-hidden="true"><img style="width: 40px;"
+                                                    src="./assets/images/icons/minus.png"></button>
+
+                                        </div>
+                                        <div class="product-details-quantity" style="display: inline-block;">
+                                            <input id="qty" class="form-control" value="{{pd.qty}}" [(ngModel)]="pd.qty" style='width:2em; border-color: white;font-size: 25px;min-width: 70px;
+                                            padding-left: 0px;
+                                            padding-right: 1px;' required>
+                                        </div><!-- End .product-details-quantity -->
+                                        <div class="button1">
+                                            <button (click)="handlePlus(pd.itemId)" class="qtyplus button1"
+                                                aria-hidden="true"><img src="./assets/images/icons/add.png"
+                                                    style="width: 40px;"></button>
+                                        </div>
+                                        <!-- <div class="cart-product-quantity">
+                                            <input type="number" class="form-control" value="{{pd.qty}}" min="1"
+                                                max="10" step="1" data-decimals="0" required>
+                                        </div> -->
+                                        <!-- End .cart-product-quantity -->
+                                    </td>
+                                    <td style="width: 10%;" class="total-col">£{{pd.qty * pd.price | currency:' '}}</td>
+                                    <td  class="remove-col"><button type="button" class="btn-remove"
+                                            (click)="remove(pd.itemId)"><i class="icon-close"></i></button></td>
+                                </tr>
+
+                            </tbody>
+                        </table><!-- End .table table-wishlist -->
+
+                        <div class="cart-bottom">
+                            <div class="cart-discount">
+                                <form action="#">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" required placeholder="coupon code">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-outline-primary-2" type="submit"><i
+                                                    class="icon-long-arrow-right"></i></button>
+                                        </div><!-- .End .input-group-append -->
+                                    </div><!-- End .input-group -->
+                                </form>
+                            </div><!-- End .cart-discount -->
+
+                            <a (click)="removeAll()" class="btn btn-outline-dark-2"><span>UPDATE CART</span><i
+                                    class="icon-refresh"></i></a>
+                        </div><!-- End .cart-bottom -->
+                    </div><!-- End .col-lg-9 -->
+                    <aside class="col-lg-3">
+                        <div class="summary summary-cart">
+                            <h3 class="summary-title">Cart Total</h3><!-- End .summary-title -->
+
+                            <table class="table table-summary">
+                                <tbody>
+                                    <tr class="summary-subtotal">
+                                        <td>Subtotal:</td>
+                                        <td>£{{totalPrice | currency:' '}}</td>
+                                    </tr><!-- End .summary-subtotal -->
+                                    <tr class="summary-shipping">
+                                        <td>Shipping:</td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+
+                                    <tr class="summary-shipping-row" *ngFor="let pd of allService; index as i">
+                                        <td *ngIf="pd.isActive=='Y'">
+                                            <div>
+                                                <input [checked]="pd.serviceName == 'Free Shipping' ? true : false"
+                                                    type="radio" id="{{i}}" value="{{pd.id}}" name="shipping"
+                                                    (click)="calculation(pd.serviceAmount)">
+                                                <label for="free-shipping">
+                                                    &nbsp;&nbsp;{{pd.serviceName}}</label>
+                                            </div><!-- End .custom-control -->
+                                        </td>
+                                        <td *ngIf="pd.isActive=='Y'">£{{pd.serviceAmount | currency:' '}}</td>
+                                    </tr><!-- End .summary-shipping-row -->
+
+
+                                    <tr class="summary-total">
+                                        <td>Total:</td>
+                                        <td>£{{checkoutPrice | currency:' '}}</td>
+                                    </tr><!-- End .summary-total -->
+                                </tbody>
+                            </table><!-- End .table table-summary -->
+
+                            <a (click)="shippingService()" class="btn btn-outline-primary-2 btn-order btn-block">PROCEED
+                                TO
+                                CHECKOUT</a>
+                        </div><!-- End .summary -->
+
+                        <a routerLink="/home" class="btn btn-outline-dark-2 btn-block mb-3"><span>CONTINUE
+                                SHOPPING</span><i class="icon-refresh"></i></a>
+                    </aside><!-- End .col-lg-3 -->
+                </div><!-- End .row -->
+            </div><!-- End .container -->
+        </div><!-- End .cart -->
+    </div><!-- End .page-content -->
+</main><!-- End .main -->

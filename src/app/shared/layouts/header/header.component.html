@@ -1,0 +1,606 @@
+<style>
+    .login-link {
+  list-style-type: none !important;
+  margin-right: 4px;
+}
+.login-link::marker {
+	color: transparent !important;
+  }
+  
+.my-list li {
+	list-style-type: none !important;
+  }
+::marker {
+	unicode-bidi: unset !important;
+	font-variant-numeric: unset !important;
+	text-transform: unset !important;
+	text-indent: unset !important;
+	text-align: unset !important;
+	text-align-last: unset !important;
+  }
+  .login-link::-webkit-details-marker {
+  display: none;
+}
+
+
+</style>
+<div class="page-wrapper" *ngFor="let pd of allCompany">
+    <header class="header header-intro-clearance header-26">
+        <!-- <div class="header-top">
+            <div class="container" style="height: 60px;">
+                <div class="header-left">
+                    <a lass="font-weight-normal">
+                        <i class="icon-phone h6 second-primary-color"></i>{{pd.tel1}}</a>
+                </div>
+                
+
+                <div class="header-right font-weight-normal">
+
+                    <ul class="top-menu">
+                        <li>
+                            <a href="#">Links</a>
+                            <ul>
+                               
+                                <li>
+                                    <div class="header-dropdown">
+                                        <a href="#">USD</a>
+                                        <div class="header-menu">
+                                            <ul>
+                                                <li>
+                                                    <a href="#">Eur</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">Usd</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        End .header-menu 
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="header-dropdown">
+                                        <a href="#">English</a>
+                                        <div class="header-menu">
+                                            <ul>
+                                                <li>
+                                                    <a href="#">English</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">French</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">Spanish</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                   
+                </div>
+               
+
+            </div>
+           
+        </div> -->
+        <!-- End .header-top -->
+
+        <div class="header-middle">
+            <div class="container">
+                <div class="header-left">
+                    <button class="mobile-menu-toggler">
+                        <span class="sr-only">Toggle mobile menu</span>
+                        <i class="icon-bars"></i>
+                    </button>
+
+                    <a href="index.html" class="logo">
+                        <img src="{{serverImgPath}}{{pd.logo}}" alt="ECom Logo" width="150px" height="25">
+                    </a>
+                </div>
+                <!-- End .header-left -->
+                <div class="header-bottom sticky-header">
+                    <div class="container">
+                        <div class="header-center">
+                            <nav class="main-nav">
+                                <ul class="menu sf-arrows">
+                                    <li class="megamenu-container active">
+                                        <a href="index.html">Home</a>
+        
+                                    </li>
+                                    <li>
+                                        <a routerLink="/about" href="/about">About</a>
+                                    </li>
+                                    <!-- <li>
+                                        <a href="category.html" class="sf-with-ul">Shop</a>
+        
+                                        <div class="megamenu megamenu-md">
+                                            <div class="row no-gutters">
+                                                <div class="col-md-8">
+                                                    <div class="menu-col">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="menu-title">Shop with sidebar</div>
+                                                                <ul>
+                                                                    <li>
+                                                                        <a routerLink="/shop-list" href="/shop-list">Shop
+                                                                            List</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="category-2cols.html">Shop Grid 2 Columns</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="category.html">Shop Grid 3 Columns</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="category-4cols.html">Shop Grid 4 Columns</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="category-market.html">
+                                                                            <span>Shop Market
+                                                                                <span class="tip tip-new">New</span>
+                                                                            </span>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+        
+                                                                <div class="menu-title">Shop no sidebar</div>
+                                                                <ul>
+                                                                    <li>
+                                                                        <a href="category-boxed.html">
+                                                                            <span>Shop Boxed No Sidebar
+                                                                                <span class="tip tip-hot">Hot</span>
+                                                                            </span>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="category-fullwidth.html">Shop Fullwidth No
+                                                                            Sidebar</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+        
+                                                            <div class="col-md-6">
+                                                                <div class="menu-title">Product Category</div>
+                                                                <ul>
+                                                                    <li>
+                                                                        <a href="product-category-boxed.html">Product Category
+                                                                            Boxed</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="product-category-fullwidth.html">
+                                                                            <span>Product Category Fullwidth
+                                                                                <span class="tip tip-new">New</span>
+                                                                            </span>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                                <div class="menu-title">Shop Pages</div>
+                                                                <ul>
+                                                                    <li>
+                                                                        <a routerLink="/cart" href="/cart">Cart</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="checkout.html">Checkout</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="wishlist.html">Wishlist</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="dashboard.html">My Account</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="#">Lookbook</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+        
+                                                <div class="col-md-4">
+                                                    <div class="banner banner-overlay">
+                                                        <a href="category.html" class="banner banner-menu">
+                                                            <img src="assets/images/menu/banner-1.jpg" alt="Banner" width="218"
+                                                                height="314">
+        
+                                                            <div class="banner-content banner-content-top">
+                                                                <div class="banner-title text-white">Last
+                                                                    <br>Chance
+                                                                    <br>
+                                                                    <span>
+                                                                        <strong>Sale</strong>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li> -->
+                                    <!-- <li>
+                                        <a href="product.html" class="sf-with-ul">Product</a>
+        
+                                        <div class="megamenu megamenu-sm">
+                                            <div class="row no-gutters">
+                                                <div class="col-md-6">
+                                                    <div class="menu-col">
+                                                        <div class="menu-title">Product Details</div>
+                                                        <ul>
+                                                            <li>
+                                                                <a href="product.html">Default</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="product-centered.html">Centered</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="product-extended.html">
+                                                                    <span>Extended Info
+                                                                        <span class="tip tip-new">New</span>
+                                                                    </span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="product-gallery.html">Gallery</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="product-sticky.html">Sticky Info</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="product-sidebar.html">Boxed With Sidebar</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="product-fullwidth.html">Full Width</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="product-masonry.html">Masonry Sticky Info</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+        
+                                                <div class="col-md-6">
+                                                    <div class="banner banner-overlay">
+                                                        <a href="category.html">
+                                                            <img src="assets/images/menu/banner-2.jpg" alt="Banner" width="218"
+                                                                height="310">
+        
+                                                            <div class="banner-content banner-content-bottom">
+                                                                <div class="banner-title text-white">New Trends
+                                                                    <br>
+                                                                    <span>
+                                                                        <strong>spring 2019</strong>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li> -->
+                                    <li>
+                                        <a href="#" class="sf-with-ul">Pages</a>        
+                                        <ul>   
+                                            <li>
+                                                <a routerLink="/login" href="/login">Login</a>
+                                            </li>
+                                            <li>
+                                                <a routerLink="/faq" href="/faq">FAQs</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <!-- <li>
+                                        <a href="blog.html" class="sf-with-ul">Blog</a>
+        
+                                        <ul>
+                                            <li>
+                                                <a href="blog.html">Classic</a>
+                                            </li>
+                                            <li>
+                                                <a href="blog-listing.html">Listing</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Grid</a>
+                                                <ul>
+                                                    <li>
+                                                        <a href="blog-grid-2cols.html">Grid 2 columns</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="blog-grid-3cols.html">Grid 3 columns</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="blog-grid-4cols.html">Grid 4 columns</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="blog-grid-sidebar.html">Grid sidebar</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a href="#">Masonry</a>
+                                                <ul>
+                                                    <li>
+                                                        <a href="blog-masonry-2cols.html">Masonry 2 columns</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="blog-masonry-3cols.html">Masonry 3 columns</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="blog-masonry-4cols.html">Masonry 4 columns</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="blog-masonry-sidebar.html">Masonry sidebar</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a href="#">Mask</a>
+                                                <ul>
+                                                    <li>
+                                                        <a href="blog-mask-grid.html">Blog mask grid</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="blog-mask-masonry.html">Blog mask masonry</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a href="#">Single Post</a>
+                                                <ul>
+                                                    <li>
+                                                        <a href="single.html">Default with sidebar</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="single-fullwidth.html">Fullwidth no sidebar</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="single-fullwidth-sidebar.html">Fullwidth with sidebar</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li> -->
+                                    <li>
+                                        <a routerLink="/contact" href="/contact">Contact</a>
+        
+                                    </li>
+                                </ul>
+                                <!-- End .menu -->
+                            </nav>
+                            <!-- End .main-nav -->
+                        </div>
+                        <!-- End .header-center -->
+        
+                        
+                    </div>
+                    <!-- End .container -->
+                </div>
+
+                <div class="header-right">
+                    <div class="header-dropdown-link">
+                        <li class="login-link" style="all: initial;margin-right: 4px;list-style-type: none !important;" *ngIf="!isLogged">
+                            <a routerLink="/login" href="/login" data-toggle="modal">Sign in / Sign up</a>
+                        </li>
+                        <li *ngIf="isLogged" class="login-link" style="all: initial;list-style-type: none !important;">
+                            <div class="container py-5 ">
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-12">
+                                        <ul class="list-unstyled">
+                                            <li class="dropdown ml-2">
+                                                <a class="rounded-circle " href="#" role="button"
+                                                    id="dropdownUser" data-toggle="dropdown"
+                                                    aria-haspopup="true" aria-expanded="false">
+                                                    <div
+                                                        class="avatar avatar-md avatar-indicators avatar-online">
+                                                        <img src="./assets/images/icons/customer.png">
+                                                    </div>
+                                                </a>
+                                                <div class="dropdown-menu pb-2" aria-labelledby="dropdownUser">
+                                                    <div class="dropdown-item">
+                                                        <div class="d-flex py-2" style="margin-bottom: 0px;">
+                                                            <div
+                                                                class="avatar avatar-md avatar-indicators avatar-online">
+                                                                <img src="./assets/images/icons/customer.png">
+                                                            </div>
+                                                            <div class="ml-3 lh-1">
+                                                                <h5 class="mb-0">{{user.firstName}}</h5>
+                                                                <p class="mb-0">{{user.email}}</p>
+                                                            </div>
+                                                        </div>
+                                                        <hr style="    margin-top: auto;
+                                                        margin-bottom: revert;">
+                                                    </div>
+
+                                                    <div class="">
+                                                        <ul style="margin-left:15px ; font-size: 15px;">
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <img src="./assets/images/icons/settings.png"
+                                                                    style="margin-right: 10px;">
+                                                                </div>
+                                                                <div class="col-md-8"style="margin-left: -24px;" >
+                                                                    <a routerLink="/myprofile" href="/myprofile"
+                                                                    style="font-size: 15px;"> My Profile</a>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            
+                                                        </ul>
+                                                    </div>
+                                                    <div class="">
+                                                        <ul style="margin-left:15px ; font-size: 15px;">
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <img src="./assets/images/icons/shopping-bag.png"
+                                                                    style="margin-right: 10px; margin-top: 10px;" width="24px" height="24px">
+                                                                </div>
+                                                                <div class="col-md-8"style="margin-left: -24px; margin-top: 10px;" >
+                                                                    <a routerLink="/myorder" href="/myorder"
+                                                                    style="font-size: 15px; margin-top: 10px;"> My Order</a>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            
+                                                        </ul>
+                                                    </div>
+                                                    <div class="" (click)="onLogout()" style="cursor: pointer;">
+                                                        <ul style="margin-left:15px ; font-size: 15px;">
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <img src="./assets/images/icons/heart-lock.png"
+                                                                    style="margin-right: 10px; margin-top: 10px;">
+                                                                </div>
+                                                                <div class="col-md-8" style="margin-left: -24px; margin-top: 10px;">
+                                                                    <a style="font-size: 15px; margin-top: 20px;">
+                                                                        Logout</a>
+                                                                </div>
+                                                            </div>
+                                                           
+                                                        </ul>
+                                                    </div>
+
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <!-- <div class="dropdown compare-dropdown">
+                            <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false" data-display="static">
+                                <div class="icon">
+                                    <i class="icon-random"></i>
+                                </div>
+                                <p>Compare</p>
+                            </a>
+                        </div> -->
+
+                        <div *ngIf="isLogged" class="wishlist">
+                            <a routerLink="/wishlist" href="/wishlist" title="Wishlist">
+                                <div class="icon">
+                                    <i class="icon-heart-o"></i>
+                                    <span class="wishlist-count badge">{{wishCount}}</span>
+                                </div>
+                                <p>Wishlist</p>
+                            </a>
+                        </div>
+                        <!-- End .compare-dropdown -->
+                        <div *ngIf="!isLogged" class="dropdown cart-dropdown">
+                            <a (click)="onView(info,'1000')" href="#" class="dropdown-toggle" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+                                <div class="icon">
+                                    <i class="icon-shopping-cart"></i>
+                                </div>
+                            </a>
+                        </div>
+
+                        <ng-template #info let-modal style="top: 150px;">
+                            <div style="height: 400px;">
+                                <div class="popup-card" style="padding-top: 0px;">
+                                    <button type="button" class="btn btn-simple" data-dismiss="modal"
+                                        (click)="modal.dismiss('Close click')" style="color: black;    display: flex;
+                                    flex-direction: column-reverse;
+                                    font-size: 25px;
+                                   
+                                    flex-wrap: wrap;
+                                    align-content: flex-end;
+                                    font-size: large;">x</button>
+                                </div>
+                                <br>
+                                <div class="container">
+                                    <div class="drop" style="top: -40px;">
+                                        <div class="content">
+                                            <h2 class='animate__heartBeat'>Welcome! Please login to continue.</h2>
+                                            <a routerLink="/login" href="/login" style="top:120px;left:150px;;" class='btn1 login' data-dismiss="modal"
+                                            (click)="modal.dismiss('Close click')"><b>Login</b></a>
+
+                                        </div>
+                                    </div>
+                                    <a  routerLink="/forgot-password" href="/forgot-password"  style="top: 250px;" class='btn1' data-dismiss="modal"
+                                    (click)="modal.dismiss('Close click')"><b>Forgot Password</b></a>
+                                    <a href="#" class='btn1 signup'data-dismiss="modal"
+                                    (click)="modal.dismiss('Close click')"><b>Signup</b></a>
+                                </div>
+                            </div>
+                        </ng-template>
+
+                        <div *ngIf="isLogged" class="dropdown cart-dropdown">
+                            <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false" data-display="static">
+                                <div class="icon">
+                                    <i class="icon-shopping-cart"></i>
+                                    <span class="cart-count">{{cartCount}}</span>
+                                </div>
+                                <p>Cart</p>
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <div class="dropdown-cart-products" style="    margin-left: 10px;
+                                margin-right: 10px;
+                                margin-top: 10px;">
+                                    <div class="product" *ngFor="let item of cartItems" >
+                                        <div class="product-cart-details">
+                                            <h4 class="product-title letter-spacing-normal font-size-normal">
+                                                <a href="product.html">{{item.itemName}}</a>
+                                            </h4>
+
+                                            <span class="cart-product-info">
+                                                <span class="cart-product-qty">{{item.qty}}</span>
+                                                x £{{item.price}}
+                                            </span>
+                                        </div>
+                                        <!-- End .product-cart-details -->
+
+                                        <figure class="product-image-container">
+                                            <a class="product-image">
+                                                <img src="{{serverImgPath1}}{{item.imgPath}}" alt="product"
+                                                    width="200" height="300">
+                                            </a>
+                                        </figure>
+                                        <a href="#" class="btn-remove" title="Remove Product">
+                                            <i class="icon-close"></i>
+                                        </a>
+                                    </div>
+                                    <!-- End .product -->
+                                </div>
+                                <!-- End .cart-product -->
+
+                                <div class="dropdown-cart-total" style="    margin-left: 10px;
+                                margin-right: 10px">
+                                    <span>Total</span>
+
+                                    <span class="cart-total-price">£{{totalPrice | currency:' '}} </span>
+                                </div>
+                                <!-- End .dropdown-cart-total -->
+
+                                <div class="dropdown-cart-action" style="    margin-left: 10px;
+                                margin-right: 10px">
+                                    <a routerLink="/cart" href="/cart" class="btn btn-primary">View Cart</a>
+                                    <a routerLink="/checkout" href="/checkout" class="btn btn-outline-primary-2">
+                                        <span>Checkout</span>
+                                        <i class="icon-long-arrow-right"></i>
+                                    </a>
+                                </div>
+                                <!-- End .dropdown-cart-total -->
+                            </div>
+                            <!-- End .dropdown-menu -->
+                        </div>
+                        <!-- End .cart-dropdown -->
+                    </div>
+                </div>
+                <!-- End .header-right -->
+            </div>
+            <!-- End .container -->
+        </div>
+        <!-- End .header-middle -->
+
+       
+        <!-- End .header-bottom -->
+    </header>
+    <!-- End .header -->
+</div>
+<!-- End .mobile-menu-container -->

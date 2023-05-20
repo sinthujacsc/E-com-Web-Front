@@ -1,0 +1,496 @@
+<main class="main" style="background-color: #fafafa; 
+margin-top: -15px; margin-top:-20px">
+    <div class="intro-section">
+        <div class="container mt-2">
+            <div class="row">
+                <div class="col-lg-5cols d-none d-lg-block">
+                    <nav class="side-nav">
+                        <div class="sidenav-title letter-spacing-normal font-size-normal d-flex justify-content-xl-between align-items-center bg-primary justify-content-center text-truncate">Browse Categories
+                            <i class="icon-bars float-right h5 text-white m-0 d-none d-xl-block"></i>
+                        </div>
+                        <!-- End .sidenav-title   font-size-normal -->
+                        <ul *ngFor="let main of allMainCategory; let i = index" class="menu-vertical sf-arrows sf-js-enabled" style="touch-action: pan-y;">
+                            <li class="megamenu-container">
+                                <a class="text-dark"routerLink="/shop-list/{{main.code}}" >
+                                    <i class="{{main.icon}}"></i>{{main.nameOf}}</a>
+                                <!-- <div class="megamenu">
+                                    <div class="row ">
+                                        <div class="col-md-8">
+                                            <div class="menu-col">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="menu-title">Laptops &amp; Computers</div>
+                                                        <ul>
+                                                            <li>
+                                                                <a href="#">Desktop Computers</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Monitors</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Laptops</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">iPad &amp; Tablets</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Hard Drives &amp; Storage</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Printers &amp; Supplies</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Computer Accessories</a>
+                                                            </li>
+                                                        </ul>
+
+                                                        <div class="menu-title">TV &amp; Video</div>
+                                                        <ul>
+                                                            <li>
+                                                                <a href="#">TVs</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Home Audio Speakers</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Projectors</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Media Streaming Devices</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <div class="menu-title">Cell Phones</div>
+                                                        <ul>
+                                                            <li>
+                                                                <a href="#">Carrier Phones</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Unlocked Phones</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Phone &amp; Cellphone Cases</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Cellphone Chargers </a>
+                                                            </li>
+                                                        </ul>
+
+                                                        <div class="menu-title">Digital Cameras</div>
+                                                        <ul>
+                                                            <li>
+                                                                <a href="#">Digital SLR Cameras</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Sports &amp; Action Cameras</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Camcorders</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Camera Lenses</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Photo Printer</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Digital Memory Cards</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Camera Bags, Backpacks &amp; Cases</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="banner banner-overlay h-100">
+                                                <a href="category.html" class="banner banner-menu">
+                                                    <img src="assets/images/demos/demo-13/menu/banner-1.jpg" alt="Banner" width="280" height="440">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> -->
+                            </li>
+                        </ul>
+                        <!-- End .menu-vertical -->
+                    </nav>
+                    <!-- End .dropdown-menu -->
+                </div>
+
+                <div class="col-lg-3-5cols col-md-9 col-12 mb-md-0 mb-2">
+                    <div class="intro-slider-container" style="width:1000px">
+                        <div class="intro-slider owl-carousel owl-theme owl-nav-inside row cols-1" data-toggle="owl" data-owl-options='{
+                                "nav": false,
+                                "dots": true,
+                                "autoplay": false,
+                                "autoplayTimeout": 10000,
+                                "animateOut": "fadeOut"
+                            }'>
+                            <div class="intro-slide bg-image d-flex align-items-center" style="background-color:#e8eded; background-image: url(assets/images/demos/demo-26/slider/slide-1.jpg); background-color: #222;">
+                                <div class="intro-content">
+                                    <h3 class="intro-subtitle font-size-normal text-dark font-weight-normal text-uppercase">Every purchase will be made with pleasure</h3>
+                                    <!-- End .h3 intro-subtitle font-size-normal -->
+                                    <h1 style="color:#61ab00 !important" class="intro-title text-dark font-weight-bold mb-0">
+                                        Welcome!
+                                        
+                                    </h1>
+                                    <!-- End .intro-title -->
+
+                                    <div class="intro-price text-dark font-weight-normal">
+                                        <sup style="color:#61ab00 !important" class="font-weight-normal">Sign Up for better deals
+                                        </sup>
+                                        
+                                    </div>
+                                    <!-- End .intro-price -->
+
+                                    <a href="/login" class="btn btn-primary text-uppercase text-dark">
+                                        <span>Shign Up</span>
+                                        <i class="icon-long-arrow-right"></i>
+                                    </a>
+                                </div>
+                                <!-- End .intro-content -->
+                            </div>
+                            <!-- End .intro-slide -->
+
+                          
+                            <!-- End .intro-slide -->
+
+                            
+                            <!-- End .intro-slide -->
+                        </div>
+                        <!-- End .intro-slider owl-carousel owl-simple -->
+
+                        <!-- 
+                            <span class="slider-loader"></span>
+                        End .slider-loader -->
+                    </div>
+                </div>
+
+               
+            </div>
+        </div>
+    </div>
+
+    <div class="container icon-boxes-section">
+        <div class="icon-boxes-container py-4 bg-lighter mb-2 mt-2" >
+            <div class="owl-carousel carousel-simple owl-theme carousel-equal-height shadow-carousel row cols-1 cols-md-2 cols-lg-3 cols-xl-4"
+                data-toggle="owl" data-owl-options='{
+                "dots": true,
+                "nav": false, 
+                "loop": false,
+                "margin": 13,
+                "responsive": {
+                    "0": {
+                        "items": 1
+                    },
+                    "575": {
+                        "items": 2
+                    },
+                    "992": {
+                        "items": 3
+                    },
+                    "1200": {
+                        "items": 4
+                    }
+                }
+            }'>
+                <div class="icon-box mb-0 d-md-flex align-items-md-center text-center text-md-left mx-md-0 mx-auto">
+                    <span class="icon-box-icon mb-0">
+                        <i class="icon-truck py-2 pt-0 second-primary-color"></i>
+                    </span>
+                    <div class="icon-box-content">
+                        <h3 class="icon-box-title font-size-normal mb-0 font-weight-bold text-uppercase second-primary-color">Payment &amp; Delivery</h3>
+                        <p class="font-weight-light second-primary-color">Free shipping for orders over $50</p>
+                    </div>
+                </div>
+                <div class="icon-box mb-0 d-md-flex align-items-md-center text-center text-md-left mx-md-0 mx-auto">
+                    <span class="icon-box-icon text-dark mb-0">
+                        <i class="icon-rotate-left py-2 pt-0 second-primary-color"></i>
+                    </span>
+                    <div class="icon-box-content">
+                        <h3 class="icon-box-title font-size-normal mb-0 font-weight-bold text-uppercase second-primary-color">Return &amp; Refund</h3>
+                        <p class="font-weight-light second-primary-color">Free 100% money back guarantee</p>
+                    </div>
+                </div>
+                <div class="icon-box mb-0 d-md-flex align-items-md-center text-center text-md-left mx-md-0 mx-auto">
+                    <span class="icon-box-icon text-dark mb-0">
+                        <i class="icon-life-ring py-2 pt-0 second-primary-color"></i>
+                    </span>
+                    <div class="icon-box-content">
+                        <h3 class="icon-box-title font-size-normal mb-0 font-weight-bold text-uppercase second-primary-color">Quality Support</h3>
+                        <p class="font-weight-light second-primary-color">Alway online feedback 24/7</p>
+                    </div>
+                </div>
+                <div class="icon-box mb-0 d-md-flex align-items-md-center text-center text-md-left mx-md-0 mx-auto">
+                    <span class="icon-box-icon text-dark mb-0">
+                        <i class="icon-envelope py-2 pt-0 second-primary-color"></i>
+                    </span>
+                    <div class="icon-box-content">
+                        <h3 class="icon-box-title font-size-normal mb-0 font-weight-bold text-uppercase second-primary-color">JOIN OUR NEWSLETTER</h3>
+                        <p class="font-weight-light second-primary-color">10% off by subscribing to our newsletter</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr class="mt-2 mb-0">
+    </div>
+
+    <div class="container banner-group-1">
+        <div class="categories mb-3">
+            <h3 class="title text-center font-weight-bold mt-4">Explore Popular Categories</h3>
+            <div class="owl-carousel carousel-theme carousel-simple carousel-with-shadow row cols-2 cols-xs-3 cols-sm-4 cols-md-5 cols-lg-6 cols-xl-8"
+                data-toggle="owl" data-owl-options='{
+                        "nav": false, 
+                        "dots": false,
+                        "margin": 10,
+                        "loop": false,
+                        "responsive": {
+                            "0": {
+                                "items":2
+                            },
+                            "480": {
+                                "items":3
+                            },
+                            "576": {
+                                "items":3
+                            },
+                            "768": {
+                                "items":5
+                            },
+                            "992": {
+                                "items":6
+                            },
+                            "1200": {
+                                "items":8
+                            }
+                        }
+                    }'>
+                <div  *ngFor="let top of allTopCategory; let i = index" class="category position-relative">
+                    <div class="category-imaage center" style="text-align:center;">
+                        <a  routerLink="/shop-list/{{top.code}}">
+                                <i style="color:#222   ;font-size: 3.10em; margin: auto;"class="{{top.icon}} w-100 center" ></i>
+                                <br>
+                                <br>
+                        </a>
+                    </div>
+                    <br>
+                    <div class="category-body letter-spacing-normal font-size-normal text-center position-absolute text-uppercase">
+                        <a routerLink="/shop-list/{{top.code}}" class="category-title text-truncate font-weight-normal">{{top.nameOf}}</a>
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+       
+    </div>
+
+    <div class="container deal-section">
+        <h3 class="title text-center mt-5 font-weight-bold">Most Popular Products</h3>
+        <div  class="deal-carousel owl-carousel owl-simple carousel-equal-height row cols-2 cols-md-3 cols-lg-4 cols-xl-5" data-toggle="owl"
+           >
+            <div *ngFor="let top of allPopularProduct; let i = index" class="product d-flex flex-column overflow-hidden">
+                <figure class="mb-0 product-media bg-white d-flex justify-content-center align-items-center">
+                    <a href="product.html" class="w-100">
+                        <img src="{{serverImgPath}}{{top.imgPath}}" alt="Product image" class="product-image" style="width: 200px;height: 200px;" width="239" height="239">
+                       
+                    </a>
+
+                    <div class="product-countdown bg-light" data-until="+55h" data-relative="true" data-labels-short="true"></div>
+                    <!-- End .product-countdown -->
+
+                    
+                </figure>
+                <!-- End .product-media bg-white d-flex justify-content-center align-items-center -->
+
+                <div class="product-body pb-3">                    
+                    <!-- End .product-cat  -->
+                    <h3 class="product-title letter-spacing-normal font-size-normal text-left mb-0">
+                        <a href="product.html">{{top.nameOf}}</a>
+                    </h3>
+                    <!-- End .product-title letter-spacing-normal font-size-normal -->
+                    <div class="product-price mb-1">
+                        <div class="new-price"> £{{top.price | currency:' '}}</div>
+                    </div>
+                    <!-- End .product-price -->
+                    <!-- <div class="ratings-container">
+                        <div class="ratings">
+                            <div class="ratings-val" style="width: 100%;"></div>
+                           
+                        </div>
+                       
+                    </div> -->
+                </div>
+                <div class="product-action position-relative visible">
+                    <a *ngIf="isLogged"  (click)="addToWish(top.custId,top.nameOf,top.imgPath,top.price)" class="btn-product btn-cart text-uppercase text-dark text-decoration-none" title="Add to cart">
+                        <span class="text-dark shadow-none">add to wishlist</span>
+                    </a>
+                    <a *ngIf="!isLogged"  (click)="onView1(info1,'1000')" class="btn-product btn-cart text-uppercase text-dark text-decoration-none" title="Add to cart">
+                        <span class="text-dark shadow-none">add to wishlist</span>
+                    </a>
+                </div>
+                <div class="product-action position-relative visible">
+                    <a *ngIf="isLogged"  (click)="addToCart(top.custId,top.nameOf,top.imgPath,top.price)" class="btn-product btn-cart text-uppercase text-dark text-decoration-none" title="Add to cart">
+                        <span class="text-dark shadow-none">add to cart</span>
+                    </a>
+                    <a *ngIf="!isLogged"  (click)="onView1(info1,'1000')" class="btn-product btn-cart text-uppercase text-dark text-decoration-none" title="Add to cart">
+                        <span class="text-dark shadow-none">add to cart</span>
+                    </a>
+                </div>
+               
+                <!-- <div class="product-sold">
+                    <div class="sold position-relative w-100">
+                        <div class="sold-val position-absolute" style="width: 80%;"></div>
+                        <span class="sold-text font-size-normal second-primary-color">Sold: 54</span>
+                    </div>
+                </div> -->
+            </div>
+            <!-- End .product -->
+
+            <!-- End .product -->
+
+            <!-- End .product -->
+
+            <!-- End .product -->
+        </div>
+    </div>
+    <!-- End .container-fluid -->
+
+    <h3 class="title text-center mt-5 font-weight-bold">New Arrivals</h3>
+
+    <div *ngFor="let top of allrecent; let i = index"  class="container electronics mb-4">
+
+        <div class="bg-lighter trending-products">
+            <div class="heading heading-flex">
+                <div class="heading-left">
+                    <h2 class="title font-weight-bold mb-1">{{top.mainCategoryName}}</h2>
+                    <!-- End .title -->
+                </div>
+                <!-- End .heading-left -->
+
+                <!-- End .heading-right -->
+            </div>
+            <!-- End .heading -->
+
+            <div  class="tab-content tab-content-carousel position-relative">
+                <div class="tab-pane p-0 fade show active" id="electronic-cell-tab" role="tabpanel" aria-labelledby="electronic-cell-link">
+                    <div class="electronic-carousel owl-carousel owl-simple carousel-equal-height row cols-2 cols-md-3 cols-lg-4 cols-xl-5 cols-xxl-6"
+                        data-toggle="owl" data-owl-options='{
+                            "nav": false, 
+                            "dots": false,
+                            "margin": 0,
+                            "loop": false,
+                            "responsive": {
+                                "0": {
+                                    "items":2
+                                },
+                                "480": {
+                                    "items":2
+                                },
+                                "576": {
+                                    "items":3
+                                },
+                                "992": {
+                                    "items":4
+                                },
+                                "1200": {
+                                    "items":5
+                                },
+                                "1400": {
+                                    "items":6
+                                }
+                            }
+                        }'>
+                        <div  *ngFor="let product of top.products; let i = index"  class="product d-flex flex-column overflow-hidden">
+                            <figure class="mb-0 product-media bg-white d-flex justify-content-center align-items-center">
+                                <a class="w-100">
+                                    <img src="{{serverImgPath}}{{product.productImage}}" alt="Product image" style="width: 200px;height: 200px;"  class="product-image" style="width: 200px;height: 200px;" width="239" height="239">
+
+                                </a>
+                                <!-- End .product-action-vertical -->
+                            </figure>
+                            <!-- End .product-media bg-white d-flex justify-content-center align-items-center -->
+
+                            <div class="product-body" style="    height: 150px;">
+                                
+                                <!-- End .product-cat  -->
+                                <h3 class="product-title letter-spacing-normal font-size-normal mb-0 text-left">
+                                    <a>{{product.productName}}</a>
+                                </h3>
+                                <!-- End .product-title letter-spacing-normal font-size-normal -->
+                                <div class="product-price mb-1 text-dark">
+                                    £{{product.productPrice | currency:' '}}
+                                </div>
+                                <div class="product-action position-relative visible" style="margin-bottom: 1rem;">
+                                    <a *ngIf="isLogged"  (click)="addToWish(top.custId,top.nameOf,top.imgPath,top.price)" class="btn-product btn-cart text-uppercase text-dark text-decoration-none" title="Add to cart">
+                                        <span class="text-dark shadow-none">add to wishlist</span>
+                                    </a>
+                                    <a *ngIf="!isLogged"  (click)="onView1(info1,'1000')" class="btn-product btn-cart text-uppercase text-dark text-decoration-none" title="Add to cart">
+                                        <span class="text-dark shadow-none">add to wishlist</span>
+                                    </a>
+                                </div>
+                                <div class="product-action position-relative visible" >
+                                    <a *ngIf="isLogged"   (click)="addToCart(top.custId,top.nameOf,top.imgPath,top.price)" class="btn-product btn-cart text-uppercase text-dark text-decoration-none" title="Add to cart">
+                                        <span class="text-dark shadow-none">add to cart</span>
+                                    </a>
+                                    <a *ngIf="!isLogged"  (click)="onView1(info1,'1000')" class="btn-product btn-cart text-uppercase text-dark text-decoration-none" title="Add to cart">
+                                        <span class="text-dark shadow-none">add to cart</span>
+                                    </a>
+                                </div>
+                                
+                            </div>
+                            
+                        </div>
+                       
+                    </div>
+                    <!-- End .owl-carousel -->
+                </div>
+               
+            </div>
+            <!-- End .tab-content -->
+        </div>
+    </div>
+
+  
+
+
+    <!-- End .blog-posts -->
+</main>
+
+<ng-template #info1 let-modal style="top: 150px;">
+    <div style="height: 400px;">
+        <div style="padding-top: 0px;">
+            <button type="button" class="btn btn-simple" data-dismiss="modal"
+                (click)="modal.dismiss('Close click')" style="color: black;    display: flex;
+            flex-direction: column-reverse;
+            font-size: 25px;
+           
+            flex-wrap: wrap;
+            align-content: flex-end;
+            font-size: large;">x</button>
+        </div>
+        <br>
+        <div class="container">
+            <div class="drop" style="top: -40px;">
+                <div class="content">
+                    <h2 class='animate__heartBeat'>Welcome! Please login to continue.</h2>
+                    <a routerLink="/login" href="/login" style="top:120px;left:150px;;" class='btn1 login' data-dismiss="modal"
+                    (click)="modal.dismiss('Close click')"><div style="margin-top: 20px"><b>Login</b></div></a>
+
+                </div>
+            </div>
+            <a  routerLink="/forgot-password" href="/forgot-password"  style="top: 250px;" class='btn1' data-dismiss="modal"
+            (click)="modal.dismiss('Close click')"><div style="margin-top: 20px"><b>Forgot Password</b></div></a>
+            <a href="#" class='btn1 signup'data-dismiss="modal"
+            (click)="modal.dismiss('Close click')"><div style="margin-top: 20px"><b>Signup</b></div></a>
+        </div>
+    </div>
+</ng-template>
+<style>
+    
+</style>
