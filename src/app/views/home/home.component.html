@@ -148,9 +148,9 @@ margin-top: -15px; margin-top:-20px">
                                         
                                     </div>
                                     <!-- End .intro-price -->
-
-                                    <a href="/login" class="btn btn-primary text-uppercase text-dark">
-                                        <span>Shign Up</span>
+                                    
+                                    <a *ngIf="!isLogged"  href="/login" class="btn btn-primary text-uppercase text-dark">
+                                        <span>Sign Up</span>
                                         <i class="icon-long-arrow-right"></i>
                                     </a>
                                 </div>
@@ -206,7 +206,7 @@ margin-top: -15px; margin-top:-20px">
                     </span>
                     <div class="icon-box-content">
                         <h3 class="icon-box-title font-size-normal mb-0 font-weight-bold text-uppercase second-primary-color">Payment &amp; Delivery</h3>
-                        <p class="font-weight-light second-primary-color">Free shipping for orders over $50</p>
+                        <p class="font-weight-light second-primary-color">Free shipping for orders over £50</p>
                     </div>
                 </div>
                 <div class="icon-box mb-0 d-md-flex align-items-md-center text-center text-md-left mx-md-0 mx-auto">
@@ -296,7 +296,7 @@ margin-top: -15px; margin-top:-20px">
            >
             <div *ngFor="let top of allPopularProduct; let i = index" class="product d-flex flex-column overflow-hidden">
                 <figure class="mb-0 product-media bg-white d-flex justify-content-center align-items-center">
-                    <a href="product.html" class="w-100">
+                    <a class="w-100">
                         <img src="{{serverImgPath}}{{top.imgPath}}" alt="Product image" class="product-image" style="width: 200px;height: 200px;" width="239" height="239">
                        
                     </a>
@@ -311,7 +311,7 @@ margin-top: -15px; margin-top:-20px">
                 <div class="product-body pb-3">                    
                     <!-- End .product-cat  -->
                     <h3 class="product-title letter-spacing-normal font-size-normal text-left mb-0">
-                        <a href="product.html">{{top.nameOf}}</a>
+                        <a >{{top.nameOf}}</a>
                     </h3>
                     <!-- End .product-title letter-spacing-normal font-size-normal -->
                     <div class="product-price mb-1">

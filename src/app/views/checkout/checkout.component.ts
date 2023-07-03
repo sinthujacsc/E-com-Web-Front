@@ -35,50 +35,50 @@ const client = new Client({
 })
 export class CheckoutComponent implements OnInit {
   cartItems: any;
-  allCompany:any;
-  shippingServiceDe:any=[];
-  isViewed: boolean=false;
-  isOpayo: boolean=false;
-  isCash: boolean=false;
-  user:any;
-  allService:any;
-  salesBrief:any = {};
-  serviceDe:any;
-  saleBriefForm:any;
-  saleBreifIdToUpdate=null;
-  infoData:any;
-  paymentForm:any;
+  allCompany: any;
+  shippingServiceDe: any = [];
+  isViewed: boolean = false;
+  isOpayo: boolean = false;
+  isCash: boolean = false;
+  user: any;
+  allService: any;
+  salesBrief: any = {};
+  serviceDe: any;
+  saleBriefForm: any;
+  saleBreifIdToUpdate = null;
+  infoData: any;
+  paymentForm: any;
 
 
-  constructor(private router: Router, private modalService: NgbModal,private toastr: ToastrService,public formBuilder: FormBuilder,private cookieService:CookieService,private service: CommonService) { }
+  constructor(private router: Router, private modalService: NgbModal, private toastr: ToastrService, public formBuilder: FormBuilder, private cookieService: CookieService, private service: CommonService) { }
 
 
   ngOnInit(): void {
-   
+
     this.user = JSON.parse(this.cookieService.get('user'));
 
     this.saleBriefForm = this.formBuilder.group({
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
-      companyName:[''],
-      billingCountry:['', [Validators.required]],
-      billingAdd1:['', [Validators.required]],
-      billingAdd2:[''],
-      billingCity:['', [Validators.required]],
+      companyName: [''],
+      billingCountry: ['', [Validators.required]],
+      billingAdd1: ['', [Validators.required]],
+      billingAdd2: [''],
+      billingCity: ['', [Validators.required]],
       billingPostcode: ['', [Validators.required]],
       mobileNum: ['', [Validators.required]],
       email: ['', [Validators.required]],
-      shippingFirstName:[''],
-      shippingLastName:[''],
-      shippingCountry:[''],
-      shippingCompany:[''],
-      shippingAdd1:[''],
-      shippingAdd2:[''],
-      shippingEmail:[''],
-      shippingPostcode:[''],
-      shippingCity:[''],
-      shippingMobileNum:[''],
-      discriptionOf:['']
+      shippingFirstName: [''],
+      shippingLastName: [''],
+      shippingCountry: [''],
+      shippingCompany: [''],
+      shippingAdd1: [''],
+      shippingAdd2: [''],
+      shippingEmail: [''],
+      shippingPostcode: [''],
+      shippingCity: [''],
+      shippingMobileNum: [''],
+      discriptionOf: ['']
 
 
     });
@@ -98,7 +98,7 @@ export class CheckoutComponent implements OnInit {
 
     this.cartItems = JSON.parse(localStorage.getItem('cartItems'));
     console.log(this.cartItems);
-    
+
   }
   formatExpiryDate(event: Event) {
     const input = event.target as HTMLInputElement;
@@ -112,8 +112,8 @@ export class CheckoutComponent implements OnInit {
 
     input.value = value;
     this.paymentForm.get('expiryDate')?.setValue(value);
-  } 
-  
+  }
+
   formatCardNumber(event: Event) {
     const input = event.target as HTMLInputElement;
     let value = input.value;
@@ -137,7 +137,7 @@ export class CheckoutComponent implements OnInit {
     input.value = value;
     this.paymentForm.get('securityCode')?.setValue(value);
   }
-  
+
   onEditUserInfo() {
     this.service.GetById('customer', this.user.custId).subscribe(
       (item: any) => {
@@ -157,17 +157,24 @@ export class CheckoutComponent implements OnInit {
       }
     );
   }
-  async onSubmit(){
-    
-    if(this.isOpayo === true){
+  async onSubmit() {
+console.clear();
+console.log("isOpayo",this.isOpayo,"isCash",this.isCash);
+    if((this.isCash ==false)  && (this.isOpayo==false))
+    {
+      this.toastr.error("Plese select the payment type");
+      return;
+    }
+
+    if (this.isOpayo === true) {
       this.user = JSON.parse(this.cookieService.get('user'));
       var userId = this.user.custId;
       this.shippingServiceDe = JSON.parse(localStorage.getItem('shippingServiceDe'));
       // console.log(this.shippingServiceDe[0].checkoutPrice);
-  
-      this.shippingServiceDe = this.shippingServiceDe.filter(x=>x.userId === userId);
+
+      this.shippingServiceDe = this.shippingServiceDe.filter(x => x.userId === userId);
       //  console.log(this.shippingServiceDe.checkoutPrice);
-  
+
       this.salesBrief.firstName = this.saleBriefForm.get('firstName').value;
       this.salesBrief.lastName = this.saleBriefForm.get('lastName').value;
       this.salesBrief.email = this.saleBriefForm.get('email').value;
@@ -183,15 +190,14 @@ export class CheckoutComponent implements OnInit {
       this.salesBrief.totalPaid = this.shippingServiceDe[0].checkoutPrice;
       this.salesBrief.manAmount = this.shippingServiceDe[0].checkoutPrice;
       this.salesBrief.netAmount = this.shippingServiceDe[0].checkoutPrice;
-      this.salesBrief.cashTendered=this.shippingServiceDe[0].checkoutPrice;
-      this.salesBrief.serviceId=this.shippingServiceDe[0].serviceId;
-      this.salesBrief.compId =this.allCompany[0].custId;
+      this.salesBrief.cashTendered = this.shippingServiceDe[0].checkoutPrice;
+      this.salesBrief.serviceId = this.shippingServiceDe[0].serviceId;
+      this.salesBrief.compId = this.allCompany[0].custId;
       this.salesBrief.compName = '';
-      this.salesBrief.custId=this.user.custId;
+      this.salesBrief.custId = this.user.custId;
       this.salesBrief.discriptionOf = '';
-  
-      if(this.isViewed==true)
-      {
+
+      if (this.isViewed == true) {
         this.salesBrief.shippingFirstName = this.saleBriefForm.get('shippingFirstName').value;
         this.salesBrief.shippingLastName = this.saleBriefForm.get('shippingLastName').value;
         this.salesBrief.shippingCompany = '';
@@ -203,8 +209,8 @@ export class CheckoutComponent implements OnInit {
         this.salesBrief.shippingPostcode = this.saleBriefForm.get('shippingPostcode').value;
         this.salesBrief.shippingMobileNum = this.saleBriefForm.get('shippingMobileNum').value;
       }
-      else{
-        this.salesBrief.shippingFirstName =  this.saleBriefForm.get('firstName').value;
+      else {
+        this.salesBrief.shippingFirstName = this.saleBriefForm.get('firstName').value;
         this.salesBrief.shippingLastName = this.saleBriefForm.get('lastName').value;
         this.salesBrief.shippingCompany = '';
         this.salesBrief.shippingAdd1 = this.user.shippingAdd1;
@@ -215,7 +221,7 @@ export class CheckoutComponent implements OnInit {
         this.salesBrief.shippingPostcode = this.user.shippingPostcode;
         this.salesBrief.shippingMobileNum = this.saleBriefForm.get('mobileNum').value;
       }
-    
+
       console.log(this.salesBrief);
 
       setTimeout(() => {
@@ -224,15 +230,15 @@ export class CheckoutComponent implements OnInit {
         const size = '1000';
         this.modalService.open(this.info, { size: size });
       }, 2000);
-      
-    }   
-    if(this.isCash === true){
+
+    }
+    if (this.isCash === true) {
       this.user = JSON.parse(this.cookieService.get('user'));
       var userId = this.user.custId;
       this.shippingServiceDe = JSON.parse(localStorage.getItem('shippingServiceDe'));
       // console.log(this.shippingServiceDe[0].checkoutPrice);
 
-      this.shippingServiceDe = this.shippingServiceDe.filter(x=>x.userId === userId);
+      this.shippingServiceDe = this.shippingServiceDe.filter(x => x.userId === userId);
       //  console.log(this.shippingServiceDe.checkoutPrice);
 
       this.salesBrief.firstName = this.saleBriefForm.get('firstName').value;
@@ -250,16 +256,15 @@ export class CheckoutComponent implements OnInit {
       this.salesBrief.totalPaid = this.shippingServiceDe[0].checkoutPrice;
       this.salesBrief.manAmount = this.shippingServiceDe[0].checkoutPrice;
       this.salesBrief.netAmount = this.shippingServiceDe[0].checkoutPrice;
-      this.salesBrief.cashTendered=this.shippingServiceDe[0].checkoutPrice;
-      this.salesBrief.serviceId=this.shippingServiceDe[0].serviceId;
-      this.salesBrief.compId =this.allCompany[0].custId;
+      this.salesBrief.cashTendered = this.shippingServiceDe[0].checkoutPrice;
+      this.salesBrief.serviceId = this.shippingServiceDe[0].serviceId;
+      this.salesBrief.compId = this.allCompany[0].custId;
       this.salesBrief.compName = this.allCompany[0].nameOf;
-      this.salesBrief.custId=this.user.custId;
+      this.salesBrief.custId = this.user.custId;
       this.salesBrief.discriptionOf = '';
       this.salesBrief.paymentStatus = 'cod';
 
-      if(this.isViewed==true)
-      {
+      if (this.isViewed == true) {
         this.salesBrief.shippingFirstName = this.saleBriefForm.get('shippingFirstName').value;
         this.salesBrief.shippingLastName = this.saleBriefForm.get('shippingLastName').value;
         this.salesBrief.shippingCompany = '';
@@ -271,8 +276,8 @@ export class CheckoutComponent implements OnInit {
         this.salesBrief.shippingPostcode = this.saleBriefForm.get('shippingPostcode').value;
         this.salesBrief.shippingMobileNum = this.saleBriefForm.get('shippingMobileNum').value;
       }
-      else{
-        this.salesBrief.shippingFirstName =  this.saleBriefForm.get('firstName').value;
+      else {
+        this.salesBrief.shippingFirstName = this.saleBriefForm.get('firstName').value;
         this.salesBrief.shippingLastName = this.saleBriefForm.get('lastName').value;
         this.salesBrief.shippingCompany = '';
         this.salesBrief.shippingAdd1 = this.user.shippingAdd1;
@@ -283,35 +288,39 @@ export class CheckoutComponent implements OnInit {
         this.salesBrief.shippingPostcode = this.user.shippingPostcode;
         this.salesBrief.shippingMobileNum = this.saleBriefForm.get('mobileNum').value;
       }
-    
+
 
       if (this.saleBreifIdToUpdate == null) {
         this.service.Post('sale-brief', this.salesBrief).subscribe(
-          (data:any) => {
+          (data: any) => {
             // success
             this.toastr.success('New sale brief Created!', 'OK!');
             this.saleBreifIdToUpdate = null;
             var briefId = data.data.billId;
             // alert(briefId);
             this.cartItems = JSON.parse(localStorage.getItem('cartItems'));
-            this.cartItems = this.cartItems.filter(x=>x.userId === userId);
+            this.cartItems = this.cartItems.filter(x => x.userId === userId);
             for (let index = 0; index < this.cartItems.length; index++) {
-                var obj:any = {};
-                obj.itemId = this.cartItems[index].itemId;
-                obj.SQty = this.cartItems[index].qty;
-                obj.unitPrice = this.cartItems[index].price;
-                obj.totalAmount = this.cartItems[index].qty * this.cartItems[index].price;
-                obj.selling = this.cartItems[index].qty * this.cartItems[index].price;
-                obj.saleBriefId = briefId;
-                this.service.Post('sale-detail', obj).subscribe(
-                  
-                )
-                setTimeout(() => {
-                  /** spinner ends after 5 seconds */
-                  this.toastr.success('Sale Detail Successfully Created!', 'Successfully Saved.');
-                  this.router.navigateByUrl('/myorder');
+              var obj: any = {};
+              obj.itemId = this.cartItems[index].itemId;
+              obj.SQty = this.cartItems[index].qty;
+              obj.unitPrice = this.cartItems[index].price;
+              obj.totalAmount = this.cartItems[index].qty * this.cartItems[index].price;
+              obj.selling = this.cartItems[index].qty * this.cartItems[index].price;
+              obj.saleBriefId = briefId;
+              this.service.Post('sale-detail', obj).subscribe(
 
-                }, 2000);
+              )
+              setTimeout(() => {
+                /** spinner ends after 5 seconds */
+                this.toastr.success('Sale Detail Successfully Created!', 'Successfully Saved.');
+                this.user = JSON.parse(this.cookieService.get('user'));
+                var userId = this.user.custId;
+                this.cartItems = this.cartItems.filter(x => x.userId !== userId);
+                localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
+                this.router.navigateByUrl('/myorder');
+
+              }, 2000);
             }
 
           },
@@ -323,7 +332,7 @@ export class CheckoutComponent implements OnInit {
     }
   }
 
-  async processPayment(){
+  async processPayment() {
     const expiryDate = this.paymentForm.get('expiryDate').value;
     const formattedExpiryDate = expiryDate.replace(/[\/\s]/g, '');
     console.log(formattedExpiryDate);
@@ -332,24 +341,24 @@ export class CheckoutComponent implements OnInit {
     console.log(formattedCardNumber);
     const merchant = await client.merchant_session_keys.create(
       { vendorName: VENDOR_NAME }
-      );
+    );
     const { expiry, merchantSessionKey } = merchant
     console.log(`Expiry: ${expiry}, Merchant Session Key: ${merchantSessionKey}`)
-    
+
     client.merchantSessionKey = merchantSessionKey;
-    
+
     const card = {
       cardDetails: {
-      cardholderName:this.paymentForm.get('cardholderName').value ,
-      cardNumber: formattedCardNumber,
-      expiryDate: formattedExpiryDate,
-      securityCode: this.paymentForm.get('securityCode').value
-      }     
+        cardholderName: this.paymentForm.get('cardholderName').value,
+        cardNumber: formattedCardNumber,
+        expiryDate: formattedExpiryDate,
+        securityCode: this.paymentForm.get('securityCode').value
+      }
     }
     const newCardIdentifier = await client.card_identifiers.create(card)
     const { cardIdentifier } = newCardIdentifier
     console.log(`Card Identifier: ${cardIdentifier}`)
-    
+
     const payment = {
       transactionType: 'Payment',
       paymentMethod: {
@@ -358,8 +367,8 @@ export class CheckoutComponent implements OnInit {
           cardIdentifier,
         }
       },
-      
-      vendorTxCode:vendorTxCode,
+
+      vendorTxCode: vendorTxCode,
       amount: this.salesBrief.totalPaid,
       currency: 'GBP',
       description: 'MHAYK TEST LIBRARY',
@@ -381,33 +390,37 @@ export class CheckoutComponent implements OnInit {
       this.salesBrief.paymentStatus = 'paid';
       if (this.saleBreifIdToUpdate == null) {
         this.service.Post('sale-brief', this.salesBrief).subscribe(
-          (data:any) => {
+          (data: any) => {
             // success
             this.toastr.success('New sale brief Created!', 'OK!');
             this.saleBreifIdToUpdate = null;
             var briefId = data.data.billId;
             // alert(briefId);
             this.cartItems = JSON.parse(localStorage.getItem('cartItems'));
-            this.cartItems = this.cartItems.filter(x=>x.userId === userId);
+            this.cartItems = this.cartItems.filter(x => x.userId === userId);
             for (let index = 0; index < this.cartItems.length; index++) {
-                var obj:any = {};
-                obj.itemId = this.cartItems[index].itemId;
-                obj.SQty = this.cartItems[index].qty;
-                obj.unitPrice = this.cartItems[index].price;
-                obj.totalAmount = this.cartItems[index].qty * this.cartItems[index].price;
-                obj.selling = this.cartItems[index].qty * this.cartItems[index].price;
-                obj.saleBriefId = briefId;
-                this.service.Post('sale-detail', obj).subscribe(
-                  
-                )
-                setTimeout(() => {
-                  /** spinner ends after 5 seconds */
-                  this.toastr.success('Sale Detail Successfully Created!', 'Successfully Saved.');
-                  this.router.navigateByUrl('/myorder');
+              var obj: any = {};
+              obj.itemId = this.cartItems[index].itemId;
+              obj.SQty = this.cartItems[index].qty;
+              obj.unitPrice = this.cartItems[index].price;
+              obj.totalAmount = this.cartItems[index].qty * this.cartItems[index].price;
+              obj.selling = this.cartItems[index].qty * this.cartItems[index].price;
+              obj.saleBriefId = briefId;
+              this.service.Post('sale-detail', obj).subscribe(
 
-                }, 2000);
+              )
+              setTimeout(() => {
+                /** spinner ends after 5 seconds */
+                this.toastr.success('Sale Detail Successfully Created!', 'Successfully Saved.');
+                this.user = JSON.parse(this.cookieService.get('user'));
+                var userId = this.user.custId;
+                this.cartItems = this.cartItems.filter(x => x.userId !== userId);
+                localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
+                this.router.navigateByUrl('/myorder');
+
+              }, 2000);
             }
-  
+
           },
           err => {
             this.toastr.error('Error while fetching data!', 'Error.');
@@ -431,8 +444,7 @@ export class CheckoutComponent implements OnInit {
         this.toastr.error('Error while fetching data!', 'Error.');
       });
   }
-  loadService()
-  {
+  loadService() {
     this.service.Get('shipping-type').subscribe(
       (success: any) => {
         this.allService = success.data;
@@ -441,33 +453,37 @@ export class CheckoutComponent implements OnInit {
         this.toastr.error('Error while fetching data!', 'Error.');
       });
   }
-  
-  isViewedShipping(){
 
-    this.isViewed=!this.isViewed;
+  isViewedShipping() {
+
+    this.isViewed = !this.isViewed;
   }
-  isOpayoShipping(){
+  isOpayoShipping() {
 
-    this.isOpayo=!this.isOpayo;
-    console.log(this.isOpayo);
-  } 
-  isCashShipping(){
+    this.isOpayo = !this.isOpayo;
+    this.isCash = !this.isOpayo;
+    console.clear();
+    console.log("isOpayo",this.isOpayo,"isCash",this.isCash);
+  }
+  isCashShipping() {
 
-    this.isCash=!this.isCash;
-    console.log(this.isCash)
+    this.isCash = !this.isCash;
+    this.isOpayo = !this.isCash;
+    console.clear();
+    console.log("isOpayo",this.isOpayo,"isCash",this.isCash);
   }
   loadCheckout() {
     this.user = JSON.parse(this.cookieService.get('user'));
     var userId = this.user.custId;
 
     this.cartItems = JSON.parse(localStorage.getItem('cartItems'));
-    this.cartItems = this.cartItems.filter(x=>x.userId === userId);
+    this.cartItems = this.cartItems.filter(x => x.userId === userId);
 
     this.shippingServiceDe = JSON.parse(localStorage.getItem('shippingServiceDe'));
-    this.shippingServiceDe = this.shippingServiceDe.filter(x=>x.userId === userId);
- 
-    
+    this.shippingServiceDe = this.shippingServiceDe.filter(x => x.userId === userId);
+
+
     this.serviceDe = this.allService.filter(x => x.id === parseInt(this.shippingServiceDe[0].serviceId));
- }
- @ViewChild('info', { static: true }) info:any;
+  }
+  @ViewChild('info', { static: true }) info: any;
 }

@@ -26,6 +26,7 @@ export class ContactComponent implements OnInit {
   public siteKey: any='';
 
   
+
   constructor(private http:HttpClient,public formBuilder: FormBuilder, private toastr: ToastrService,private service: CommonService) { }
   
   title = 'recatcha';
@@ -67,7 +68,7 @@ export class ContactComponent implements OnInit {
         () => {
           this.dataSaved = true;
           // success
-          this.toastr.success('New contact Created!', 'OK!');
+          this.toastr.success('Your enquiry is submitted!', 'OK!');
           this.contactIdToUpdate = null;
         },
         err => {
@@ -88,4 +89,6 @@ export class ContactComponent implements OnInit {
         this.toastr.error('Error while fetching data!', 'Error.');
       });
   }
+
+ 
 }

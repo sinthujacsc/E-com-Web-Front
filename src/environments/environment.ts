@@ -10,8 +10,11 @@ export const environment = {
   img_path: 'http://localhost:8000/img/',
   // for prerender
   host: 'http://localhost:4000',
-  VENDOR_NAME:'sandbox',
-  SANDBOX_INTEGRATION_KEY:'hJYxsw7HLbj40cB8udES8CDRFLhuJ8G54O6rDpUXvE6hYDrria',
-  SANDBOX_INTEGRATION_PASSWORD:'o2iHSrFybYMZpmWOQMuhsXP52V4fBtpuSDshrKDSWsBY1OiN6hwd9Kb12z4j5Us5u'
+  VENDOR_NAME:'oyslans',
+  SANDBOX_INTEGRATION_KEY:'DpmuzcPOURAt0rKEXWrFK04mlpTQCG2h80eamjVB3ueUiGBzny',
+  SANDBOX_INTEGRATION_PASSWORD:'bhmYJMUcMdjZg7QBtcytGuonGVXEZxw1LhwRshllDZMpUgyLu3l7czXMmCSNPsfri'
+  // VENDOR_NAME:'sandbox',
+  // SANDBOX_INTEGRATION_KEY:'hJYxsw7HLbj40cB8udES8CDRFLhuJ8G54O6rDpUXvE6hYDrria',
+  // SANDBOX_INTEGRATION_PASSWORD:'o2iHSrFybYMZpmWOQMuhsXP52V4fBtpuSDshrKDSWsBY1OiN6hwd9Kb12z4j5Us5u'
 };
 

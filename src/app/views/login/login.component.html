@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
 <main class="main">
     <nav aria-label="breadcrumb" class="breadcrumb-nav border-0 mb-0">
         <div class="container">
@@ -29,38 +31,50 @@
                             aria-labelledby="signin-tab-2">
                             <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
                                 <div class="form-group">
-                                    <label for="email">Username or email address *</label>
+                                    <label for="email"> email address *</label>
                                     <input type="email" class="form-control" id="emai" #email="ngModel" name="email"
-                                        [(ngModel)]="formModel.email" placeholder="Email" required>
+                                        [(ngModel)]="formModel.email" patten="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                                        placeholder="Email" required>
                                 </div><!-- End .form-group -->
 
                                 <div class="form-group">
                                     <label for="password">Password *</label>
-                                    <input type="password" class="form-control" id="password" #password="ngModel"
-                                        name="password" [(ngModel)]="formModel.password" placeholder="Password"
-                                        required>
-                                </div><!-- End .form-group -->
+                                    <div class="icon-input">
+                                        <input *ngIf="isView" type="text" class="form-control" id="password"
+                                            #password="ngModel" name="password" [(ngModel)]="formModel.password"
+                                            placeholder="Password" required>
+                                        <input *ngIf="!isView" type="password" class="form-control" id="password"
+                                            #password="ngModel" name="password" [(ngModel)]="formModel.password"
+                                            placeholder="Password" required>
+                                        <span class="eye-icon">
+                                            <i (click)="isViewed()" class="fa fa-eye"></i>
+                                        </span>
+                                    </div>
+
+                                </div><!-- End .form-group   -->
+                                <label style="font-weight: bold;" [ngStyle]="{'color': !isrecaptcha ? 'indianred' : 'green' }" >{{recaptchamess}}</label>
                                 <form [formGroup]="aFormGroup">
-                                    <ngx-recaptcha2 #captchaElem [siteKey]="siteKey" formControlName="recaptcha">
+                                    <ngx-recaptcha2  (success)="VerifyingsussfullyClick($event)" (error)="verfyfail()" (expire)="verfyfail()" #captchaElem [siteKey]="siteKey" formControlName="recaptcha">
                                     </ngx-recaptcha2>
                                 </form>
                                 <div class="form-footer">
                                     <button type="submit" class="btn btn-outline-primary-2"
-                                        [disabled]="!aFormGroup.valid">
+                                    [disabled]="!aFormGroup.valid">
                                         <span>LOG IN</span>
                                         <i class="icon-long-arrow-right"></i>
                                     </button>
 
-                                    <div class="custom-control custom-checkbox">
+                                    <!-- <div class="custom-control custom-checkbox">
                                         <input type="checkbox" class="custom-control-input" id="signin-remember-2">
                                         <label class="custom-control-label" for="signin-remember-2">Remember Me</label>
-                                    </div><!-- End .custom-checkbox -->
+                                    </div> -->
+                                    <!-- End .custom-checkbox -->
 
                                     <a routerLink="/forgot-password" href="/forgot-password" class="forgot-link">Forgot
                                         Your Password?</a>
                                 </div><!-- End .form-footer -->
                             </form>
-                           
+
                         </div><!-- .End .tab-pane -->
                         <div class="tab-pane fade" id="register-2" role="tabpanel" aria-labelledby="register-tab-2">
                             <form [formGroup]="registerForm" (ngSubmit)="onSubmitRegister()">
@@ -112,8 +126,9 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="form-col-form-label" for="mobileNum">Phone</label>
-                                            <input type="text" class="form-control"
+                                            <input type="tel" class="form-control"
                                                 [ngClass]="registerForm.get('mobileNum').errors ? 'is-invalid' : 'is-valid' "
+                                                pattern="[0-9]+" oninput="this.value=this.value.replace(/[^0-9]/g, '')"
                                                 id="mobileNum" formControlName="mobileNum">
                                             <div class="valid-feedback"
                                                 *ngIf="registerForm.get('mobileNum').touched && registerForm.get('mobileNum').errors?.required">
@@ -126,7 +141,8 @@
                                             <label for="email">Username or email address *</label>
                                             <input type="email" class="form-control" id="emai" name="email"
                                                 [ngClass]="registerForm.get('email').errors ? 'is-invalid' : 'is-valid' "
-                                                id="email" formControlName="email" required>
+                                                id="email" formControlName="email"
+                                                patten="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
                                         </div><!-- End .form-group -->
                                         <div class="valid-feedback"
                                             *ngIf="registerForm.get('email').touched && registerForm.get('email').errors?.required">
@@ -136,8 +152,15 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="password">Password *</label>
-                                            <input type="password" class="form-control" name="password" id="password"
-                                                formControlName="password" required>
+                                            <div class="icon-input">
+                                                <input *ngIf="isView1" type="text" class="form-control" name="password"
+                                                    id="password" formControlName="password" required>
+                                                <input *ngIf="!isView1"  type="password" class="form-control" name="password"
+                                                    id="password" formControlName="password" required>
+                                                <span class="eye-icon">
+                                                    <i (click)="isViewed1()" class="fa fa-eye"></i>
+                                                </span>
+                                            </div>
                                         </div><!-- End .form-group -->
                                     </div>
                                 </div>
@@ -156,7 +179,7 @@
                                     </div><!-- End .custom-checkbox -->
                                 </div><!-- End .form-footer -->
                             </form>
-                           
+
                         </div><!-- .End .tab-pane -->
                     </div><!-- End .tab-content -->
                 </div><!-- End .form-tab -->
@@ -164,3 +187,22 @@
         </div><!-- End .container -->
     </div><!-- End .login-page section-bg -->
 </main><!-- End .main -->
+<script src="https://kit.fontawesome.com/your-fontawesome-kit.js"></script>
+<style>
+    .icon-input {
+        position: relative;
+    }
+
+    .icon-input .fa {
+        position: absolute;
+        top: 50%;
+        left: 410px;
+        /* Adjust the left position as needed */
+        transform: translateY(-50%);
+    }
+
+    .icon-input input {
+        padding-left: 30px;
+        /* Adjust the padding to make space for the icon */
+    }
+</style>

@@ -19,13 +19,14 @@
     <div class="page-content">
         <div class="checkout">
             <div class="container">
-                <div class="checkout-discount">
+                <!-- <div class="checkout-discount">
                     <form action="#">
                         <input type="text" class="form-control" required id="checkout-discount-input">
                         <label for="checkout-discount-input" class="text-truncate">Have a coupon? <span>Click here to
                                 enter your code</span></label>
                     </form>
-                </div><!-- End .checkout-discount -->
+                </div> -->
+                <!-- End .checkout-discount -->
                 <form [formGroup]="saleBriefForm" (ngSubmit)="onSubmit()">
                     <div class="row">
                         <div class="col-lg-9">
@@ -92,17 +93,17 @@
 
                                 <div class="col-sm-6">
                                     <label for="mobileNum">Phone *</label>
-                                    <input type="text" class="form-control"
-                                        [ngClass]="saleBriefForm.get('mobileNum').errors ? 'is-invalid' : 'is-valid' "
+                                    <input type="tel" class="form-control"
+                                       pattern="[0-9]+" oninput="this.value=this.value.replace(/[^0-9]/g, '')"[ngClass]="saleBriefForm.get('mobileNum').errors ? 'is-invalid' : 'is-valid' "
                                         id="mobileNum" formControlName="mobileNum" placeholder="Enter the Mobile Number"
                                         required>
                                 </div><!-- End .col-sm-6 -->
                             </div><!-- End .row -->
 
                             <label for="email">Email address *</label>
-                            <input type="text" class="form-control"
+                            <input type="email" class="form-control"
                                 [ngClass]="saleBriefForm.get('email').errors ? 'is-invalid' : 'is-valid' " id="email"
-                                formControlName="email" placeholder="Enter the Email" required>
+                                formControlName="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="Enter the Email" required>
 
                             <div class="custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input" id="checkout-diff-address"
@@ -157,7 +158,7 @@
                                 <div class="col-sm-6">
                                     <label for="shippingEmail">Email *</label>
                                     <input type="text" class="form-control" id="shippingEmail"
-                                        formControlName="shippingEmail" placeholder="Enter the Email" required>
+                                       patten="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" formControlName="shippingEmail" placeholder="Enter the Email" required>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-6">
@@ -168,7 +169,7 @@
                                     </div><!-- End .col-sm-6 -->
                                     <div class="col-sm-6">
                                         <label for="shippingMobileNum">Phone *</label>
-                                        <input type="text" class="form-control" id="shippingMobileNum"
+                                        <input type="tel" pattern="[0-9]+" oninput="this.value=this.value.replace(/[^0-9]/g, '').slice(0, 14)"class="form-control" id="shippingMobileNum"
                                             formControlName="shippingMobileNum" placeholder="Enter the Mobile Number"
                                             required>
                                     </div>
@@ -187,7 +188,7 @@
                                 <table class="table table-summary">
                                     <thead>
                                         <tr>
-                                            <th>Product</th>
+                                            <th>Product(s)</th>
                                             <th>Total</th>
                                         </tr>
                                     </thead>
@@ -231,8 +232,6 @@
                                             </div>
                                         </div>
                                     </div> -->
-
-
 
                                     <div class="card">
                                         <div class="card-header" id="heading-3">
@@ -283,7 +282,7 @@
                                 </div><!-- End .accordion -->
 
                                 <button type="submit" class="btn btn-outline-primary-2 btn-order btn-block">
-                                    <span class="btn-hover-text">Proceed to Checkout</span>
+                                    <span>Proceed to Checkout</span>
                                 </button>
                             </div><!-- End .summary -->
                         </aside><!-- End .col-lg-3 -->

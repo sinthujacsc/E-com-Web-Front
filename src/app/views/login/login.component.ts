@@ -19,6 +19,11 @@ export class LoginComponent implements OnInit {
 	browsername: any;
 	registerForm: any;
 	user: any = {};
+	isView:any;
+	isView1:any;
+	isrecaptcha:boolean=false;
+	recaptchamess:any='Verify required';
+	
 
 	public aFormGroup!: FormGroup;
 	public siteKey: any = '';
@@ -51,8 +56,32 @@ export class LoginComponent implements OnInit {
 
 		this.getIpAddress();
 	}
+	isViewed()
+	{
+		this.isView = !this.isView;
+
+	}
+	isViewed1()
+	{
+		this.isView1 = !this.isView1;
+
+	}
+
+	VerifyingsussfullyClick(e:any)
+	{
+		this.isrecaptcha = true
+		this.recaptchamess ='Verified'
+	}
+
+	verfyfail()
+	{
+		this.isrecaptcha = false
+		this.recaptchamess ='verification fails';
+	}
 
 	onSubmit(form: NgForm) {
+
+		
 		this.service.systemLogin(form.value).subscribe(
 			(res: any) => {
 				var domain = window.location.hostname;

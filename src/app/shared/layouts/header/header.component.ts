@@ -86,7 +86,10 @@ export class HeaderComponent implements OnInit {
 	    this.cookieService.deleteAll();			
 			this.toastr.success('Successfully logged out...', '');
       this.router.navigate(['/home']);
+      window.location.reload();
+      
 	}
+
 	
   onView(content: any, size: any) {
     this.modalService.open(content, { size: size });
